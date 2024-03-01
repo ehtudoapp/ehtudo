@@ -1,0 +1,17 @@
+version: "3"
+services:
+   ehtudo:
+      image: nginx:1.21.1-alpine  
+      container_name: ehtudo
+      volumes:
+        - ./www:/usr/share/nginx/html/
+      networks: 
+        nginx-proxy:
+          # ipv4_address: "172.20.0.3"
+      restart: always
+networks:  
+  # default:
+  #   external:
+  #     name: nginx-proxy
+  nginx-proxy:
+    external: true
