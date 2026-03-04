@@ -3,14 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Passa Régua - Divisão de despesas para grupos">
+        <meta name="description" content="Passa Régua - Divisão inteligente de despesas em grupo, similar ao Splitwise">
         <title>Passa Régua — Eh! Tudo App</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="css/bulma.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+            .passaregua-color { color: #047857; }
+            .passaregua-bg { background-color: #047857; }
+            .hero-passaregua { background-color: #047857; }
+        </style>
     </head>
 <body>
-    <section class="hero is-purple is-medium" style="background-color: #8e44ad;">
+    <section class="hero is-medium hero-passaregua">
         <div class="hero-head">
             <nav class="navbar" style="background-color: transparent;">
                 <div class="container">
@@ -28,7 +33,7 @@
                     <i class="fas fa-users"></i> Passa Régua
                 </p>
                 <p class="subtitle is-4 has-text-white">
-                    Divida despesas em grupo de forma justa e sem complicação
+                    Divisão inteligente de despesas em grupo — com sincronização entre dispositivos
                 </p>
                 <a href="https://passaregua.ehtudo.app/" target="_blank" class="button is-white is-outlined is-medium">
                     <span class="icon"><i class="fas fa-external-link-alt"></i></span>
@@ -41,22 +46,29 @@
     <section class="section">
         <div class="container">
             <div class="columns is-vcentered">
-                <div class="column is-6">
-                    <figure class="image">
-                        <img src="img/screenshot-passaregua.png" alt="Screenshot do Passa Régua">
+                <div class="column is-5">
+                    <figure class="image" style="max-width:390px;margin:0 auto;">
+                        <img src="img/screenshot-passaregua.png" alt="Screenshot do Passa Régua" style="border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
                     </figure>
                 </div>
-                <div class="column is-6">
-                    <h2 class="title is-3" style="color: #8e44ad;">Sobre a aplicação</h2>
+                <div class="column is-7">
+                    <h2 class="title is-3 passaregua-color">Sobre a aplicação</h2>
                     <p class="content is-medium">
-                        O <strong>Passa Régua</strong> é um aplicativo de divisão de despesas para grupos de pessoas, similar ao Splitwise — mas feito especialmente para o mercado brasileiro.
+                        O <strong>Passa Régua</strong> é uma aplicação web mobile-first para divisão inteligente de despesas entre amigos, similar ao Splitwise. Com sincronização de grupos entre dispositivos via <strong>PocketBase</strong>.
                     </p>
                     <p class="content is-medium">
-                        Ideal para viagens em grupo, repúblicas, casais e eventos: registre as despesas, informe quem pagou e o sistema calcula automaticamente o que cada pessoa deve pagar ou receber.
+                        Registre as despesas do grupo, informe quem pagou e o valor — o sistema calcula automaticamente o acerto de contas usando um <strong>algoritmo que minimiza o número de transações necessárias</strong>, evitando voltas desnecessárias do dinheiro.
                     </p>
                     <p class="content is-medium">
-                        Chega de confusão e cobranças constrangedoras — o Passa Régua deixa as contas claras para todo o grupo.
+                        Ideal para viagens em grupo, repúblicas, casais e eventos. Chega de confusão e cobranças constrangedoras!
                     </p>
+                    <div class="tags">
+                        <span class="tag is-success is-light">Vue 3</span>
+                        <span class="tag is-success is-light">TypeScript</span>
+                        <span class="tag is-success is-light">Tailwind CSS</span>
+                        <span class="tag is-success is-light">PocketBase</span>
+                        <span class="tag is-success is-light">Mobile-first</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,48 +76,60 @@
 
     <section class="section has-background-light">
         <div class="container">
-            <h2 class="title is-3 has-text-centered" style="color: #8e44ad;">Funcionalidades</h2>
+            <h2 class="title is-3 has-text-centered passaregua-color">Como funciona</h2>
+            <div class="columns is-vcentered" style="margin-bottom:2rem;">
+                <div class="column is-8 is-offset-2">
+                    <div class="box">
+                        <p class="title is-5 passaregua-color"><i class="fas fa-lightbulb"></i> Algoritmo de liquidação inteligente</p>
+                        <p>O Passa Régua calcula os saldos líquidos de cada participante — quem pagou mais do que devia (credor) e quem pagou menos (devedor). Em seguida, cruza o maior devedor com o maior credor realizando a maior transferência possível entre eles, repetindo o ciclo até zerar todos os saldos. Isso garante o <strong>número mínimo de transações</strong>.</p>
+                        <br>
+                        <p><strong>Exemplo:</strong> Alice pagou R$&nbsp;150, Bob pagou R$&nbsp;90, Carol não pagou nada. Total: R$&nbsp;240 (R$&nbsp;80 por pessoa). Em vez de 3 transferências, o sistema resolve em apenas 2: Carol → Alice R$&nbsp;70 e Carol → Bob R$&nbsp;10.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="title is-3 has-text-centered passaregua-color">Funcionalidades</h2>
             <div class="columns is-multiline">
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-users"></i></p>
-                        <p class="subtitle is-5">Grupos de despesas</p>
-                        <p>Crie grupos para viagens, eventos ou convivência e adicione os participantes facilmente.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-users"></i></p>
+                        <p class="subtitle is-5">Grupos com sincronia</p>
+                        <p>Crie grupos para viagens e eventos. Os dados sincronizam entre dispositivos em tempo real via PocketBase.</p>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-balance-scale"></i></p>
-                        <p class="subtitle is-5">Divisão justa</p>
-                        <p>O sistema calcula automaticamente o saldo de cada pessoa e indica quem deve pagar para quem.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-receipt"></i></p>
+                        <p class="subtitle is-5">Registro de despesas</p>
+                        <p>Registre data, valor, quem pagou e descrição. Divida igualmente, por porcentagem ou por valor fixo.</p>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-history"></i></p>
-                        <p class="subtitle is-5">Histórico completo</p>
-                        <p>Consulte todas as despesas registradas e o histórico de acertos do grupo a qualquer momento.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-balance-scale"></i></p>
+                        <p class="subtitle is-5">Saldos automáticos</p>
+                        <p>Veja o saldo de cada participante (verde = credor, vermelho = devedor) e as transações sugeridas para zerar as contas.</p>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-mobile-alt"></i></p>
-                        <p class="subtitle is-5">Acesso mobile</p>
-                        <p>Use pelo celular ou computador — a interface é responsiva e funciona em qualquer dispositivo.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-money-bill-wave"></i></p>
+                        <p class="subtitle is-5">Registro de pagamentos</p>
+                        <p>Registre pagamentos diretos entre membros para quitar as dívidas conforme as sugestões do sistema.</p>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-tags"></i></p>
-                        <p class="subtitle is-5">Categorias de despesas</p>
-                        <p>Classifique despesas por categorias como alimentação, transporte, hospedagem e muito mais.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-mobile-alt"></i></p>
+                        <p class="subtitle is-5">Mobile-first</p>
+                        <p>Interface projetada para celular com botões FAB, drawers e navegação por abas — funciona em qualquer dispositivo.</p>
                     </div>
                 </div>
                 <div class="column is-4">
                     <div class="box has-text-centered">
-                        <p class="title is-1" style="color: #8e44ad;"><i class="fas fa-lock"></i></p>
-                        <p class="subtitle is-5">Privacidade e segurança</p>
-                        <p>Seus dados ficam protegidos e só os membros do grupo têm acesso às despesas registradas.</p>
+                        <p class="title is-1 passaregua-color"><i class="fas fa-sync-alt"></i></p>
+                        <p class="subtitle is-5">Sincronização entre dispositivos</p>
+                        <p>Compartilhe o grupo com outros participantes e todos veem as despesas e saldos atualizados em tempo real.</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +138,7 @@
 
     <section class="section">
         <div class="container has-text-centered">
-            <a href="https://passaregua.ehtudo.app/" target="_blank" class="button is-large has-text-white" style="background-color: #8e44ad;">
+            <a href="https://passaregua.ehtudo.app/" target="_blank" class="button is-large has-text-white passaregua-bg">
                 <span class="icon"><i class="fas fa-rocket"></i></span>
                 <span>Experimente agora</span>
             </a>
