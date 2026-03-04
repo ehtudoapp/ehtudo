@@ -1,156 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Eh! Tudo App</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-        <link href="css/bulma.min.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">		
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-1269773357354866",
-            enable_page_level_ads: true
-          });
-        </script>
-      </head>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Eh! Tudo App — ferramentas práticas para o seu dia a dia. Reembolsa AI, Planilha, Passa Régua e Rifa Online.">
+    <title>Eh! Tudo App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="css/bulma.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1269773357354866",
+        enable_page_level_ads: true
+      });
+    </script>
+    <style>
+        /* ── Reset ───────────────────────────────── */
+        body { background: #f8faff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+        /* ── Hero ────────────────────────────────── */
+        .ht-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1a56a8 100%);
+            padding: 72px 24px 60px;
+            text-align: center;
+        }
+        .ht-hero-logo {
+            font-size: 52px; font-weight: 900; color: #fff;
+            letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 6px;
+        }
+        .ht-hero-logo span { color: #60a5fa; }
+        .ht-hero-domain { font-size: 14px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; margin-bottom: 20px; }
+        .ht-hero-tagline {
+            font-size: 19px; color: rgba(255,255,255,0.80);
+            max-width: 480px; margin: 0 auto 36px; line-height: 1.55;
+        }
+        .ht-hero-cta {
+            display: inline-block; background: #2563eb; color: #fff;
+            padding: 13px 36px; border-radius: 50px; font-size: 15px;
+            font-weight: 700; text-decoration: none; letter-spacing: 0.01em;
+            transition: background 0.2s, transform 0.15s;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.40);
+        }
+        .ht-hero-cta:hover { background: #1d4ed8; color: #fff; transform: translateY(-1px); }
+
+        /* ── Pillars strip ───────────────────────── */
+        .ht-pillars {
+            background: #fff;
+            border-bottom: 1px solid #e5e7eb;
+            border-top: 1px solid #e5e7eb;
+        }
+        .ht-pillar { text-align: center; padding: 28px 12px; }
+        .ht-pillar-icon { font-size: 30px; margin-bottom: 8px; line-height: 1; }
+        .ht-pillar-title { font-weight: 700; font-size: 14px; color: #1e293b; margin-bottom: 3px; }
+        .ht-pillar-sub { font-size: 12px; color: #64748b; }
+        .ht-pillar + .ht-pillar { border-left: 1px solid #f1f5f9; }
+
+        /* ── Apps section ────────────────────────── */
+        .ht-apps { background: #f8faff; padding: 60px 24px 72px; }
+        .ht-section-title {
+            font-size: 26px; font-weight: 800; color: #1e293b;
+            text-align: center; margin-bottom: 6px;
+        }
+        .ht-section-sub { text-align: center; color: #64748b; margin-bottom: 40px; font-size: 15px; }
+
+        /* Card */
+        .ht-card {
+            background: #fff; border-radius: 14px; overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            border: 1px solid #e5e7eb;
+            display: flex; flex-direction: column; height: 100%;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .ht-card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.13); transform: translateY(-4px); }
+        .ht-card-bar { height: 5px; }
+        .ht-card-imgwrap { overflow: hidden; }
+        .ht-card-img { width: 100%; height: 195px; object-fit: cover; display: block; }
+        .ht-card-body { padding: 20px 22px 16px; flex: 1; }
+        .ht-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .ht-card-icon { font-size: 26px; line-height: 1; }
+        .ht-card-name { font-size: 19px; font-weight: 700; color: #1e293b; }
+        .ht-card-desc { font-size: 13.5px; color: #475569; line-height: 1.65; margin-bottom: 14px; }
+        .ht-card-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+        .ht-tag {
+            font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 100px;
+            background: #f1f5f9; color: #475569;
+        }
+        .ht-card-footer { padding: 14px 22px 18px; border-top: 1px solid #f1f5f9; }
+        .ht-btn {
+            display: inline-block; padding: 9px 22px; border-radius: 8px;
+            font-size: 13.5px; font-weight: 700; text-decoration: none;
+            transition: opacity 0.15s, transform 0.15s; color: #fff;
+        }
+        .ht-btn:hover { opacity: 0.88; color: #fff; transform: translateX(2px); }
+
+        /* ── Footer ──────────────────────────────── */
+        .ht-footer {
+            background: #0f172a; color: rgba(255,255,255,0.55);
+            text-align: center; padding: 32px 24px; font-size: 13px;
+        }
+        .ht-footer a { color: rgba(255,255,255,0.80); }
+        .ht-footer a:hover { color: #fff; }
+
+        @media (max-width: 768px) {
+            .ht-hero { padding: 52px 16px 44px; }
+            .ht-hero-logo { font-size: 38px; }
+            .ht-hero-tagline { font-size: 16px; }
+            .ht-pillar + .ht-pillar { border-left: none; }
+        }
+    </style>
+</head>
 <body>
-    <section class="hero is-halfheight masthead">        
-            <nav class="level">  
-                <div class="container">     
-                    <div class="level-left">
-                        <div class="level-item">
-                            <p class="title is-1 has-text-white">Eh! Tudo app</p>
-                        </div>
-                    </div> 
-                    <div class="level-right">
-                        <div class="level-item">
-                        </div>
-                    </div>  
-                </div>              
-            </nav>
-        <div class="hero-body">
-			<div class="container">
-				<p class="subtitle has-text-white is-2">
-					Tenha sua aplicação na web.<br> Tenha suas aplicações em forma de site de uma maneira fácil
-				</p>   
-			</div>
-        </div>              
-    </section>
-    <section class="section is-medium">
-        <div class="tile is-ancestors container">
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-					<p class="title is-1 has-text-info has-text-centered"><i class="fas fa-mobile-alt"></i></p>
-                    <p class="subtitle is-3  has-text-info">Aplicações Responsivas</p>
-                    <div class="content">
-                        <p>Tenha suas aplicações para todos os dispositivos.</p>
-                    </div>
-                </article>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="ht-hero">
+    <div class="ht-hero-logo">Eh! Tudo<span>App</span></div>
+    <div class="ht-hero-domain">ehtudo.app</div>
+    <p class="ht-hero-tagline">Ferramentas práticas para o seu dia a dia.<br>Mobile-first · Sem cadastro · Seus dados.</p>
+    <a href="#apps" class="ht-hero-cta">Ver aplicativos ↓</a>
+</section>
+
+<!-- ── PILLARS ────────────────────────────────────────── -->
+<section class="ht-pillars">
+    <div class="container">
+        <div class="columns is-mobile is-multiline is-gapless">
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">🆓</div>
+                <div class="ht-pillar-title">Grátis</div>
+                <div class="ht-pillar-sub">Sem mensalidade obrigatória</div>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-					<p class="title is-1 has-text-info has-text-centered"><i class="fas fa-desktop"></i></p>
-                    <p class="subtitle is-3 has-text-info">Frameworks modernos</p>
-                    <div class="content">
-                        <p>Aplicações desenvolvidas com os frameworks hypsters do momento.</p>
-                    </div>
-                </article>
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">📱</div>
+                <div class="ht-pillar-title">Mobile-first</div>
+                <div class="ht-pillar-sub">Funciona perfeitamente no celular</div>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-					<p class="title is-1 has-text-info has-text-centered"><i class="fas fa-shipping-fast"></i></p>
-                    <p class="subtitle is-3 has-text-info">Entregas rápidas</p>
-                    <div class="content">
-                        <p>Entregaremos suas aplicações com metodologias ágeis e voltadas para o que realmente importa primeiro.</p>
-                    </div>
-                </article>
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">🚀</div>
+                <div class="ht-pillar-title">Sem cadastro</div>
+                <div class="ht-pillar-sub">Comece a usar agora mesmo</div>
+            </div>
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">🔒</div>
+                <div class="ht-pillar-title">Seus dados</div>
+                <div class="ht-pillar-sub">Privacidade por padrão</div>
             </div>
         </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <h2 class="title is-2 has-text-centered has-text-info">Nossas Aplicações</h2>
-            <p class="subtitle has-text-centered has-text-grey">Confira as soluções que desenvolvemos para facilitar o seu dia a dia.</p>
-            <div class="columns is-multiline is-centered">
-                <div class="column is-half">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-16by9">
-                                <img src="img/reembolsa-reports.png" alt="Reembolsa AI">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <p class="title is-4">Reembolsa AI</p>
-                            <p class="content">Gestão de reembolsos corporativos com OCR e IA. Tire foto do cupom fiscal e a IA extrai os dados automaticamente. Dashboard de aprovação, multi-empresa, trilha de auditoria e compliance com LGPD.</p>
-                        </div>
-                        <footer class="card-footer">
-                            <a href="reembolsa.html" class="card-footer-item button is-info is-light">Detalhes</a>
-                        </footer>
+    </div>
+</section>
+
+<!-- ── APPS ──────────────────────────────────────────── -->
+<section class="ht-apps" id="apps">
+    <div class="container">
+        <div class="ht-section-title">Nossas aplicações</div>
+        <p class="ht-section-sub">Soluções que desenvolvemos para facilitar o seu dia a dia.</p>
+
+        <div class="columns is-multiline">
+
+            <!-- Reembolsa AI -->
+            <div class="column is-half">
+                <div class="ht-card">
+                    <div class="ht-card-bar" style="background:#1a73e8;"></div>
+                    <div class="ht-card-imgwrap">
+                        <img class="ht-card-img" src="img/reembolsa-reports.png" alt="Reembolsa AI">
                     </div>
-                </div>
-                <div class="column is-half">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-16by9">
-                                <img src="img/planilha-dashboard.png" alt="Planilha">
-                            </figure>
+                    <div class="ht-card-body">
+                        <div class="ht-card-header">
+                            <span class="ht-card-icon">🧾</span>
+                            <span class="ht-card-name">Reembolsa AI</span>
                         </div>
-                        <div class="card-content">
-                            <p class="title is-4">Planilha</p>
-                            <p class="content">Liberdade da Planilha + Agilidade de um App. Lance gastos em segundos pelo celular e analise tudo no Google Sheets — seus dados ficam 100% no seu Drive.</p>
+                        <p class="ht-card-desc">Gestão de reembolsos corporativos com OCR e IA. Tire foto do cupom fiscal e a IA extrai os dados automaticamente. Dashboard de aprovação, multi-empresa e compliance com LGPD.</p>
+                        <div class="ht-card-tags">
+                            <span class="ht-tag">🤖 IA / OCR</span>
+                            <span class="ht-tag">🏢 Corporativo</span>
+                            <span class="ht-tag">🔒 LGPD</span>
+                            <span class="ht-tag">📱 Mobile-first</span>
                         </div>
-                        <footer class="card-footer">
-                            <a href="planilha.html" class="card-footer-item button is-info is-light">Detalhes</a>
-                        </footer>
                     </div>
-                </div>
-                <div class="column is-half">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-16by9">
-                                <img src="img/screenshot-rifa.png" alt="Rifa">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <p class="title is-4">Rifa</p>
-                            <p class="content">Crie rifas online, venda bilhetes numerados, acompanhe quem pagou e realize o sorteio de forma transparente. Ideal para campanhas beneficentes, prêmios e eventos.</p>
-                        </div>
-                        <footer class="card-footer">
-                            <a href="rifa.html" class="card-footer-item button is-info is-light">Detalhes</a>
-                        </footer>
-                    </div>
-                </div>
-                <div class="column is-half">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image" style="background:#f0fdf4;display:flex;justify-content:center;padding:1rem;">
-                                <img src="img/passaregua-despesas.png" alt="Passa Régua" style="max-height:300px;width:auto;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <p class="title is-4">Passa Régua</p>
-                            <p class="content">Divida despesas em grupo pelo celular — sem cadastro, sem servidor. Lançamentos salvos localmente e compartilhados entre dispositivos por link. O app calcula automaticamente o número mínimo de transferências para acertar as contas.</p>
-                        </div>
-                        <footer class="card-footer">
-                            <a href="passaregua.html" class="card-footer-item button is-info is-light">Detalhes</a>
-                        </footer>
+                    <div class="ht-card-footer">
+                        <a href="reembolsa.html" class="ht-btn" style="background:#1a73e8;">Ver detalhes →</a>
                     </div>
                 </div>
             </div>
+
+            <!-- Planilha -->
+            <div class="column is-half">
+                <div class="ht-card">
+                    <div class="ht-card-bar" style="background:#0f9d58;"></div>
+                    <div class="ht-card-imgwrap">
+                        <img class="ht-card-img" src="img/planilha-dashboard.png" alt="Planilha">
+                    </div>
+                    <div class="ht-card-body">
+                        <div class="ht-card-header">
+                            <span class="ht-card-icon">📊</span>
+                            <span class="ht-card-name">Planilha</span>
+                        </div>
+                        <p class="ht-card-desc">Liberdade da planilha + agilidade de um app. Lance gastos em segundos pelo celular e analise tudo no Google Sheets — seus dados ficam 100% no seu Drive.</p>
+                        <div class="ht-card-tags">
+                            <span class="ht-tag">📋 Google Sheets</span>
+                            <span class="ht-tag">🤖 IA / OCR</span>
+                            <span class="ht-tag">🔒 Seus dados</span>
+                            <span class="ht-tag">📱 Mobile-first</span>
+                        </div>
+                    </div>
+                    <div class="ht-card-footer">
+                        <a href="planilha.html" class="ht-btn" style="background:#0f9d58;">Ver detalhes →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rifa Online -->
+            <div class="column is-half">
+                <div class="ht-card">
+                    <div class="ht-card-bar" style="background:#e67e22;"></div>
+                    <div class="ht-card-imgwrap">
+                        <img class="ht-card-img" src="img/screenshot-rifa.png" alt="Rifa Online">
+                    </div>
+                    <div class="ht-card-body">
+                        <div class="ht-card-header">
+                            <span class="ht-card-icon">🎟️</span>
+                            <span class="ht-card-name">Rifa Online</span>
+                        </div>
+                        <p class="ht-card-desc">Crie rifas online, venda bilhetes numerados, acompanhe quem pagou e realize o sorteio de forma transparente. Ideal para campanhas beneficentes e eventos.</p>
+                        <div class="ht-card-tags">
+                            <span class="ht-tag">🎰 Sorteio justo</span>
+                            <span class="ht-tag">💰 Gestão de pagamentos</span>
+                            <span class="ht-tag">🔗 Compartilhável</span>
+                        </div>
+                    </div>
+                    <div class="ht-card-footer">
+                        <a href="rifa.html" class="ht-btn" style="background:#e67e22;">Ver detalhes →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passa Régua -->
+            <div class="column is-half">
+                <div class="ht-card">
+                    <div class="ht-card-bar" style="background:#047857;"></div>
+                    <div class="ht-card-imgwrap" style="background:#f0fdf4; display:flex; justify-content:center; align-items:center;">
+                        <img src="img/passaregua-despesas.png" alt="Passa Régua" style="height:195px; width:auto; object-fit:contain; display:block;">
+                    </div>
+                    <div class="ht-card-body">
+                        <div class="ht-card-header">
+                            <span class="ht-card-icon">⚖️</span>
+                            <span class="ht-card-name">Passa Régua</span>
+                        </div>
+                        <p class="ht-card-desc">Divida despesas em grupo pelo celular. Os dados ficam salvos localmente e sincronizados na nuvem via link de compartilhamento — todos acessam de qualquer dispositivo, sem precisar instalar nada.</p>
+                        <div class="ht-card-tags">
+                            <span class="ht-tag">📱 Local + ☁️ Nuvem</span>
+                            <span class="ht-tag">🔗 Compartilhamento por link</span>
+                            <span class="ht-tag">🆓 Sem cadastro</span>
+                        </div>
+                    </div>
+                    <div class="ht-card-footer">
+                        <a href="passaregua.html" class="ht-btn" style="background:#047857;">Ver detalhes →</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                © <a href="http://ehtudo.app">ehtudo.app</a> 2026
-            </p>
-            <p>
-                Made with <strong>Bulma</strong>
-            </p>
-        </div>
-    </footer>
+    </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="ht-footer">
+    <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2026 · Feito com ❤️ e <strong style="color:rgba(255,255,255,0.8)">Bulma</strong></p>
+</footer>
+
 </body>
 </html>
