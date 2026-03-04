@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Passa Régua — Divida despesas em grupo. Mobile-first, lançamentos locais e sincronização entre dispositivos por link de compartilhamento.">
+        <meta name="description" content="Passa Régua — Divida despesas em grupo. Mobile-first, dados salvos local e na nuvem, sincronização entre dispositivos por link de compartilhamento.">
         <title>Passa Régua — Eh! Tudo App</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="css/bulma.min.css" rel="stylesheet">
@@ -123,10 +123,11 @@
         <div class="gp-info">
             <h1 class="gp-appname">Passa Régua</h1>
             <div class="gp-developer">ehtudo.app</div>
-            <div class="gp-tagline">Divisão de despesas em grupo · Mobile-first · Sincronização por link de compartilhamento</div>
+            <div class="gp-tagline">Divisão de despesas em grupo · Mobile-first · Dados local + nuvem · Sincronização por link</div>
             <div class="gp-badges">
                 <span class="gp-badge">📱 Mobile-first</span>
-                <span class="gp-badge">🔗 Compartilhamento por URL</span>
+                <span class="gp-badge">🔗 Link de Compartilhamento</span>
+                <span class="gp-badge">☁️ Local + Nuvem</span>
                 <span class="gp-badge green">✓ Grátis</span>
                 <span class="gp-badge">🏠 Dados Locais</span>
                 <span class="gp-badge">👥 Grupos</span>
@@ -198,12 +199,12 @@
     <!-- Metrics bar -->
     <div class="gp-metrics">
         <div class="gp-metric">
-            <div class="gp-metric-val">Local</div>
-            <div class="gp-metric-lbl">dados salvos no dispositivo</div>
+            <div class="gp-metric-val">📱</div>
+            <div class="gp-metric-lbl">dados locais no dispositivo</div>
         </div>
         <div class="gp-metric">
-            <div class="gp-metric-val">URL</div>
-            <div class="gp-metric-lbl">compartilhamento entre dispositivos</div>
+            <div class="gp-metric-val">☁️</div>
+            <div class="gp-metric-lbl">sincronizado na nuvem via link</div>
         </div>
         <div class="gp-metric">
             <div class="gp-metric-val">Min.</div>
@@ -220,13 +221,18 @@
         <div class="gp-section-title">Sobre o aplicativo</div>
         <div class="gp-description">
             <p>O <strong>Passa Régua</strong> é um aplicativo web <strong>mobile-first</strong> para divisão de despesas em grupo. Crie um grupo para a viagem, república, família ou evento — registre quem pagou o quê e o app calcula automaticamente o acerto de contas com o menor número de transferências possível.</p>
-            <p>Tudo roda <strong>localmente no seu dispositivo</strong>: sem cadastro, sem servidor, sem mensalidade. Para sincronizar com outras pessoas, basta <strong>compartilhar o link do grupo</strong> — quem receber o link terá acesso aos mesmos dados em tempo real.</p>
+            <p>Os dados ficam salvos <strong>localmente no seu dispositivo</strong> — sem cadastro obrigatório — e, ao <strong>compartilhar o link do grupo</strong>, são sincronizados na nuvem automaticamente. Assim todos os participantes veem as despesas e os saldos atualizados em tempo real, de qualquer dispositivo, pelo mesmo link.</p>
             <p>Projetado para funcionar perfeitamente no celular, com navegação por abas na parte inferior, botões grandes e interface limpa — ideal para usar no calor do momento, sem complicação.</p>
         </div>
 
         <div class="algo-callout">
             <strong>⚖️ Algoritmo de liquidação inteligente</strong><br>
             O Passa Régua calcula os saldos líquidos de cada participante e cruza credores com devedores para chegar ao <strong>número mínimo de transferências</strong> necessárias para zerar todas as contas. Assim, ninguém precisa fazer mais pagamentos do que o necessário.
+        </div>
+
+        <div class="algo-callout" style="margin-top:12px;background:#eff6ff;border-left-color:#1a73e8;">
+            <strong>☁️ Local + Nuvem — o melhor dos dois mundos</strong><br>
+            Os dados ficam salvos <strong>no seu dispositivo</strong> e, ao compartilhar o link do grupo, são sincronizados automaticamente na nuvem. Todos os participantes acessam pelo mesmo link, em qualquer celular, e veem as despesas e saldos sempre atualizados — sem precisar instalar nada.
         </div>
 
         <div class="gp-section-title" style="margin-top:28px;">Como funciona</div>
@@ -243,8 +249,8 @@
             </div>
             <div class="gp-step">
                 <div class="gp-step-num">3</div>
-                <div class="gp-step-title">🔗 Compartilhe e acerte</div>
-                <div class="gp-step-desc">Compartilhe o link do grupo com os participantes. O app mostra os saldos e as transferências sugeridas para zerar as contas.</div>
+                <div class="gp-step-title">🔗 Compartilhe o link</div>
+                <div class="gp-step-desc">Compartilhe o link do grupo com os participantes. Os dados sincronizam na nuvem — todos acessam e lançam despesas em tempo real.</div>
             </div>
         </div>
     </div>
@@ -255,18 +261,13 @@
         <div class="gp-feature-grid">
             <div class="gp-feature-card">
                 <div class="gp-feature-icon">📱</div>
-                <div class="gp-feature-title">Mobile-first</div>
-                <div class="gp-feature-desc">Interface pensada para celular: navegação por abas na base da tela, botões grandes e toque suave. Use com uma mão só.</div>
-            </div>
-            <div class="gp-feature-card">
-                <div class="gp-feature-icon">🏠</div>
                 <div class="gp-feature-title">Dados Locais</div>
-                <div class="gp-feature-desc">Todos os lançamentos ficam salvos no seu dispositivo. Sem servidor, sem nuvem obrigatória, sem mensalidade.</div>
+                <div class="gp-feature-desc">Os lançamentos ficam salvos no seu dispositivo mesmo sem conexão. Sem cadastro obrigatório para começar a usar.</div>
             </div>
             <div class="gp-feature-card">
-                <div class="gp-feature-icon">🔗</div>
-                <div class="gp-feature-title">Sincronização por URL</div>
-                <div class="gp-feature-desc">Compartilhe o link do grupo com todos os participantes. Quem tiver o link acessa os dados e pode adicionar despesas.</div>
+                <div class="gp-feature-icon">☁️</div>
+                <div class="gp-feature-title">Sincronização na Nuvem</div>
+                <div class="gp-feature-desc">Ao compartilhar o link do grupo, os dados vão para a nuvem automaticamente. Qualquer participante acessa pelo link e os saldos ficam sempre atualizados.</div>
             </div>
             <div class="gp-feature-card">
                 <div class="gp-feature-icon">👥</div>
@@ -282,6 +283,11 @@
                 <div class="gp-feature-icon">🚀</div>
                 <div class="gp-feature-title">Sem Cadastro</div>
                 <div class="gp-feature-desc">Abra o app e comece a usar. Defina seu nome no dispositivo e adicione os membros do grupo — sem formulários, sem senha.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📲</div>
+                <div class="gp-feature-title">Mobile-first</div>
+                <div class="gp-feature-desc">Interface pensada para celular: navegação por abas na base da tela, botões grandes e toque suave — funciona em qualquer dispositivo.</div>
             </div>
         </div>
     </div>
