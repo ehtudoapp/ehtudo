@@ -3,111 +3,355 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Reembolsa Aí! - Controle de reembolsos para equipes">
-        <title>Reembolsa Aí! — Eh! Tudo App</title>
+        <meta name="description" content="Reembolsa AI — Sistema completo de reembolso de despesas corporativas com OCR inteligente e IA">
+        <title>Reembolsa AI — Eh! Tudo App</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="css/bulma.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+            /* ---- Google Play-style layout ---- */
+            body { background: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+            /* Top nav breadcrumb */
+            .gp-topnav { background: #fff; border-bottom: 1px solid #e8eaed; padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5f6368; }
+            .gp-topnav a { color: #1a73e8; text-decoration: none; font-weight: 500; }
+            .gp-topnav a:hover { text-decoration: underline; }
+            .gp-topnav .sep { margin: 0 4px; }
+
+            /* Hero / App info row */
+            .gp-hero { background: #fff; padding: 32px 48px; display: flex; gap: 32px; align-items: flex-start; border-bottom: 1px solid #e8eaed; }
+            .gp-icon { width: 96px; height: 96px; border-radius: 22px; object-fit: cover; flex-shrink: 0; background: linear-gradient(135deg, #2563eb, #7c3aed); display: flex; align-items: center; justify-content: center; font-size: 42px; color: white; }
+            .gp-info { flex: 1; }
+            .gp-appname { font-size: 26px; font-weight: 700; color: #202124; margin: 0 0 4px; }
+            .gp-developer { font-size: 14px; color: #1a73e8; font-weight: 500; margin-bottom: 8px; }
+            .gp-tagline { font-size: 14px; color: #5f6368; margin-bottom: 12px; }
+            .gp-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+            .gp-badge { background: #e8f0fe; color: #1a73e8; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 500; }
+            .gp-badge.green { background: #e6f4ea; color: #137333; }
+            .gp-rating-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: #5f6368; }
+            .gp-stars { color: #fbbc04; font-size: 15px; }
+            .gp-meta-item { display: flex; flex-direction: column; align-items: center; border-left: 1px solid #e8eaed; padding-left: 16px; }
+            .gp-meta-val { font-weight: 700; font-size: 16px; color: #202124; }
+            .gp-meta-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+            .gp-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 200px; }
+            .gp-btn-install { background: #1a73e8; color: white; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+            .gp-btn-install:hover { background: #1558b0; color: white; }
+            .gp-free-label { font-size: 12px; color: #5f6368; }
+
+            /* Screenshot carousel */
+            .gp-carousel-section { background: #fff; padding: 24px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-carousel-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
+            .gp-carousel { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+            .gp-carousel::-webkit-scrollbar { height: 4px; }
+            .gp-carousel::-webkit-scrollbar-thumb { background: #dadce0; border-radius: 4px; }
+            .gp-screenshot-wrap { flex-shrink: 0; scroll-snap-align: start; }
+            .gp-screenshot-wrap img { border-radius: 12px; border: 1px solid #e8eaed; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+            .gp-screenshot-wrap .caption { font-size: 11px; color: #5f6368; text-align: center; margin-top: 6px; }
+            /* Mobile phone frame */
+            .phone-frame { background: #111; border-radius: 32px; padding: 10px; display: inline-block; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+            .phone-frame img { border-radius: 24px; display: block; }
+
+            /* About section */
+            .gp-about { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-section-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
+            .gp-description { font-size: 15px; color: #3c4043; line-height: 1.7; max-width: 800px; }
+            .gp-description p { margin-bottom: 12px; }
+            .gp-how-works { display: flex; gap: 24px; margin-top: 20px; }
+            .gp-step { flex: 1; background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e8eaed; }
+            .gp-step-num { width: 36px; height: 36px; background: #1a73e8; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 12px; }
+            .gp-step-title { font-weight: 600; color: #202124; margin-bottom: 6px; font-size: 14px; }
+            .gp-step-desc { font-size: 13px; color: #5f6368; }
+
+            /* Metrics bar */
+            .gp-metrics { background: linear-gradient(135deg, #1a73e8, #7c3aed); padding: 32px 48px; display: flex; gap: 0; }
+            .gp-metric { flex: 1; text-align: center; color: white; padding: 0 16px; }
+            .gp-metric + .gp-metric { border-left: 1px solid rgba(255,255,255,0.3); }
+            .gp-metric-val { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+            .gp-metric-lbl { font-size: 13px; opacity: 0.85; }
+
+            /* Features grid */
+            .gp-features { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .gp-feature-card { background: #f8f9fa; border-radius: 12px; padding: 20px; border: 1px solid #e8eaed; }
+            .gp-feature-icon { font-size: 28px; margin-bottom: 10px; }
+            .gp-feature-title { font-size: 14px; font-weight: 600; color: #202124; margin-bottom: 6px; }
+            .gp-feature-desc { font-size: 13px; color: #5f6368; line-height: 1.5; }
+
+            /* Plans section */
+            .gp-plans { background: #f8f9fa; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-plan-grid { display: flex; gap: 16px; }
+            .gp-plan-card { flex: 1; background: #fff; border: 2px solid #e8eaed; border-radius: 16px; padding: 24px; }
+            .gp-plan-card.popular { border-color: #1a73e8; position: relative; }
+            .gp-popular-badge { background: #1a73e8; color: white; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+            .gp-plan-name { font-size: 18px; font-weight: 700; color: #202124; margin-bottom: 4px; }
+            .gp-plan-for { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+            .gp-plan-price { font-size: 28px; font-weight: 800; color: #202124; margin-bottom: 16px; }
+            .gp-plan-price small { font-size: 13px; font-weight: 400; color: #5f6368; }
+            .gp-plan-feature { font-size: 13px; color: #3c4043; padding: 5px 0; border-bottom: 1px solid #f1f3f4; display: flex; align-items: center; gap: 8px; }
+            .gp-plan-feature i { color: #34a853; font-size: 13px; }
+            .gp-plan-btn { display: block; width: 100%; text-align: center; margin-top: 20px; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; }
+            .gp-plan-btn.primary { background: #1a73e8; color: white; border: none; }
+            .gp-plan-btn.secondary { background: white; color: #1a73e8; border: 2px solid #1a73e8; }
+            .gp-plan-btn.outline { background: white; color: #5f6368; border: 2px solid #e8eaed; }
+
+            /* Footer */
+            .gp-footer { background: #fff; padding: 24px 48px; text-align: center; color: #5f6368; font-size: 14px; border-top: 1px solid #e8eaed; }
+            .gp-footer a { color: #1a73e8; text-decoration: none; }
+            .gp-back-btn { display: inline-flex; align-items: center; gap: 8px; color: #5f6368; text-decoration: none; padding: 8px 16px; border: 1px solid #dadce0; border-radius: 8px; font-size: 14px; margin-bottom: 16px; }
+            .gp-back-btn:hover { background: #f8f9fa; color: #202124; }
+
+            /* Responsive */
+            @media (max-width: 900px) {
+                .gp-hero { flex-direction: column; padding: 24px; }
+                .gp-cta { align-items: flex-start; }
+                .gp-carousel-section, .gp-about, .gp-features, .gp-plans { padding: 20px 16px; }
+                .gp-how-works { flex-direction: column; }
+                .gp-feature-grid { grid-template-columns: 1fr 1fr; }
+                .gp-plan-grid { flex-direction: column; }
+                .gp-metrics { flex-direction: column; gap: 16px; padding: 24px 16px; }
+                .gp-metric + .gp-metric { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 16px; }
+            }
+        </style>
     </head>
 <body>
-    <section class="hero is-info is-medium">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="index.html">
-                            <strong>Eh! Tudo App</strong>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <p class="title is-1">
-                    <i class="fas fa-receipt"></i> Reembolsa Aí!
-                </p>
-                <p class="subtitle is-4">
-                    Controle de reembolsos simples para equipes e empresas
-                </p>
-                <a href="https://reembolsa-ai.ehtudo.app/" target="_blank" class="button is-white is-outlined is-medium">
-                    <span class="icon"><i class="fas fa-external-link-alt"></i></span>
-                    <span>Acessar aplicação</span>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column is-6">
-                    <figure class="image">
-                        <img src="img/screenshot-reembolsa.png" alt="Screenshot do Reembolsa Aí!">
-                    </figure>
+    <!-- Breadcrumb nav -->
+    <div class="gp-topnav">
+        <a href="index.html">Eh! Tudo App</a>
+        <span class="sep">/</span>
+        <span>Reembolsa AI</span>
+    </div>
+
+    <!-- App Hero -->
+    <div class="gp-hero">
+        <div class="gp-icon">💸</div>
+        <div class="gp-info">
+            <h1 class="gp-appname">Reembolsa AI</h1>
+            <div class="gp-developer">ehtudo.app</div>
+            <div class="gp-tagline">Gestão de reembolsos com IA · Sistema completo para equipes e empresas</div>
+            <div class="gp-badges">
+                <span class="gp-badge">💼 Corporativo</span>
+                <span class="gp-badge">🤖 IA / OCR</span>
+                <span class="gp-badge green">✓ Grátis até 5 relatórios/mês</span>
+                <span class="gp-badge">🔒 LGPD</span>
+                <span class="gp-badge">📱 Mobile-first</span>
+            </div>
+            <div class="gp-rating-row">
+                <div>
+                    <span class="gp-stars">★★★★★</span>
+                    <span style="font-weight:700;margin-left:4px;">5,0</span>
                 </div>
-                <div class="column is-6">
-                    <h2 class="title is-3 has-text-info">Sobre a aplicação</h2>
-                    <p class="content is-medium">
-                        O <strong>Reembolsa Aí!</strong> é uma plataforma criada para simplificar o processo de solicitação e aprovação de reembolsos em equipes e empresas de todos os tamanhos.
-                    </p>
-                    <p class="content is-medium">
-                        Com ele, colaboradores registram despesas, anexam comprovantes e acompanham o status de cada solicitação em tempo real — tudo sem precisar de planilhas ou e-mails.
-                    </p>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">15+</span>
+                    <span class="gp-meta-lbl">Relatórios</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">< 10s</span>
+                    <span class="gp-meta-lbl">OCR IA</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">99%</span>
+                    <span class="gp-meta-lbl">Precisão</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="section has-background-light">
-        <div class="container">
-            <h2 class="title is-3 has-text-centered has-text-info">Funcionalidades</h2>
-            <div class="columns is-multiline">
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-info"><i class="fas fa-plus-circle"></i></p>
-                        <p class="subtitle is-5">Registro de despesas</p>
-                        <p>Registre qualquer tipo de despesa com descrição e valor em poucos cliques.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-info"><i class="fas fa-file-invoice"></i></p>
-                        <p class="subtitle is-5">Anexo de comprovantes</p>
-                        <p>Faça upload de notas fiscais e recibos diretamente na solicitação.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-info"><i class="fas fa-check-circle"></i></p>
-                        <p class="subtitle is-5">Aprovação simplificada</p>
-                        <p>Gestores aprovam ou rejeitam solicitações com um clique e os solicitantes são notificados.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container has-text-centered">
-            <a href="https://reembolsa-ai.ehtudo.app/" target="_blank" class="button is-info is-large">
-                <span class="icon"><i class="fas fa-rocket"></i></span>
-                <span>Experimente agora</span>
+        <div class="gp-cta">
+            <a href="https://reembolsa-ai.ehtudo.app/app/" target="_blank" class="gp-btn-install">
+                <i class="fas fa-rocket"></i>&nbsp; Começar Grátis
             </a>
-            <br><br>
-            <a href="index.html" class="button is-light">← Voltar para a página inicial</a>
+            <span class="gp-free-label">Sem cartão de crédito · Setup em 5 minutos</span>
+            <a href="https://reembolsa-ai.ehtudo.app/" target="_blank" style="font-size:13px;color:#1a73e8;margin-top:4px;">
+                Ver página completa →
+            </a>
         </div>
-    </section>
+    </div>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
+    <!-- Screenshot Carousel -->
+    <div class="gp-carousel-section">
+        <div class="gp-carousel-title">Screenshots</div>
+        <div class="gp-carousel">
+            <!-- Desktop screenshots -->
+            <div class="gp-screenshot-wrap">
+                <img src="img/reembolsa-dashboard.png" alt="Dashboard de relatórios" style="height:280px;width:auto;">
+                <div class="caption">Dashboard</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <img src="img/reembolsa-reports.png" alt="Lista de relatórios" style="height:280px;width:auto;">
+                <div class="caption">Relatórios</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <img src="img/reembolsa-new-expense.png" alt="Nova despesa" style="height:280px;width:auto;">
+                <div class="caption">Nova Despesa</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <img src="img/reembolsa-categories.png" alt="Categorias" style="height:280px;width:auto;">
+                <div class="caption">Categorias</div>
+            </div>
+            <!-- Mobile screenshots in phone frame -->
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/reembolsa-dashboard-mobile.png" alt="Dashboard mobile" style="height:260px;width:auto;">
+                </div>
+                <div class="caption">Dashboard · Mobile</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/reembolsa-reports-mobile.png" alt="Relatórios mobile" style="height:260px;width:auto;">
+                </div>
+                <div class="caption">Relatórios · Mobile</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/reembolsa-new-expense-mobile.png" alt="Nova despesa mobile" style="height:260px;width:auto;">
+                </div>
+                <div class="caption">Nova Despesa · Mobile</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics bar -->
+    <div class="gp-metrics">
+        <div class="gp-metric">
+            <div class="gp-metric-val">15×</div>
+            <div class="gp-metric-lbl">mais rápido que processo manual</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">99%</div>
+            <div class="gp-metric-lbl">de precisão no OCR com IA</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">< 10s</div>
+            <div class="gp-metric-lbl">para processar cada cupom</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">60%</div>
+            <div class="gp-metric-lbl">de redução em custos operacionais</div>
+        </div>
+    </div>
+
+    <!-- About section -->
+    <div class="gp-about">
+        <div class="gp-section-title">Sobre o aplicativo</div>
+        <div class="gp-description">
             <p>
-                © <a href="http://ehtudo.app">ehtudo.app</a> 2025
+                O <strong>Reembolsa AI</strong> é um sistema completo de reembolso de despesas corporativas com <strong>OCR inteligente por IA</strong>.
+                Funcionários tiram foto do cupom fiscal pelo celular — a inteligência artificial extrai valor, data, estabelecimento e categoria automaticamente em menos de 10 segundos.
             </p>
             <p>
-                Made with <strong>Bulma</strong>
+                Gestores recebem notificação e aprovam ou rejeitam despesas com um clique no dashboard centralizado.
+                Todo o fluxo — do registro ao pagamento — fica rastreável com trilha de auditoria completa e compliance com LGPD.
+            </p>
+            <p>
+                Suporta <strong>múltiplas empresas</strong> com dados isolados, centros de custo independentes e configurações personalizadas por organização.
             </p>
         </div>
-    </footer>
+
+        <div style="margin-top:28px;">
+            <div class="gp-section-title">Como funciona</div>
+            <div class="gp-how-works">
+                <div class="gp-step">
+                    <div class="gp-step-num">1</div>
+                    <div class="gp-step-title">📸 Fotografe o cupom</div>
+                    <div class="gp-step-desc">Use a câmera do celular ou faça upload de uma foto. Aceita JPG, PNG e PDF.</div>
+                </div>
+                <div class="gp-step">
+                    <div class="gp-step-num">2</div>
+                    <div class="gp-step-title">🤖 IA extrai os dados</div>
+                    <div class="gp-step-desc">Em menos de 10 segundos, a IA extrai valor, data, estabelecimento e categoria automaticamente.</div>
+                </div>
+                <div class="gp-step">
+                    <div class="gp-step-num">3</div>
+                    <div class="gp-step-title">✅ Aprove e reembolse</div>
+                    <div class="gp-step-desc">O gestor recebe notificação, revisa os dados e aprova com um clique. Simples assim.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features grid -->
+    <div class="gp-features">
+        <div class="gp-section-title">Funcionalidades em destaque</div>
+        <div class="gp-feature-grid">
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📷</div>
+                <div class="gp-feature-title">Captura Inteligente</div>
+                <div class="gp-feature-desc">Tire foto do cupom fiscal pelo celular ou desktop. A IA extrai valor, data, estabelecimento e categoria automaticamente.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">✅</div>
+                <div class="gp-feature-title">Aprovação Rápida</div>
+                <div class="gp-feature-desc">Dashboard centralizado para gestores aprovarem ou rejeitarem despesas com justificativa em poucos cliques.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🏢</div>
+                <div class="gp-feature-title">Multi-empresa</div>
+                <div class="gp-feature-desc">Gerencie múltiplas empresas com dados isolados, configurações personalizadas e centros de custo independentes.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📊</div>
+                <div class="gp-feature-title">Relatórios Completos</div>
+                <div class="gp-feature-desc">Relatórios com agrupamento por período, cálculo automático de totais e rastreamento de status: Rascunho → Enviado → Aprovado → Pago.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🔒</div>
+                <div class="gp-feature-title">Compliance e Auditoria</div>
+                <div class="gp-feature-desc">Trilha de auditoria completa, logs imutáveis e conformidade com LGPD. Tudo rastreável e exportável.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📱</div>
+                <div class="gp-feature-title">Mobile-first</div>
+                <div class="gp-feature-desc">Interface responsiva que funciona perfeitamente em qualquer dispositivo. Registre despesas em qualquer lugar.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plans / Pricing -->
+    <div class="gp-plans">
+        <div class="gp-section-title">Planos</div>
+        <div class="gp-plan-grid">
+            <div class="gp-plan-card">
+                <div class="gp-plan-name">Gratuito</div>
+                <div class="gp-plan-for">Para profissionais individuais</div>
+                <div class="gp-plan-price">R$ 0<small>/mês</small></div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Até 5 relatórios/mês</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> OCR com IA</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Fluxo de aprovação</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Suporte por email</div>
+                <a href="https://reembolsa-ai.ehtudo.app/app/" target="_blank" class="gp-plan-btn secondary">Começar Grátis</a>
+            </div>
+            <div class="gp-plan-card popular">
+                <div class="gp-popular-badge">⭐ Mais Popular</div>
+                <div class="gp-plan-name">Profissional</div>
+                <div class="gp-plan-for">Para equipes em crescimento</div>
+                <div class="gp-plan-price"><small style="font-size:16px;">A partir de </small>R$ 29<small>/usuário/mês</small></div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Relatórios ilimitados</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> OCR com IA</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Fluxo de aprovação</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Suporte prioritário</div>
+                <a href="https://reembolsa-ai.ehtudo.app/app/" target="_blank" class="gp-plan-btn primary">Começar Agora</a>
+            </div>
+            <div class="gp-plan-card">
+                <div class="gp-plan-name">Empresarial</div>
+                <div class="gp-plan-for">Para grandes corporações</div>
+                <div class="gp-plan-price" style="font-size:20px;">Sob consulta</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Tudo do Profissional</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> SSO e LDAP</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Integração personalizada</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> SLA dedicado</div>
+                <a href="mailto:contato@reembolsa-ai.ehtudo.app" class="gp-plan-btn outline">Falar com Vendas</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back / Footer -->
+    <div class="gp-footer">
+        <div style="margin-bottom:12px;">
+            <a href="index.html" class="gp-back-btn">
+                <i class="fas fa-arrow-left"></i> Voltar para Eh! Tudo App
+            </a>
+        </div>
+        <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2025</p>
+    </div>
+
 </body>
 </html>
