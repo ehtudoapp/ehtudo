@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Eh! Tudo App — ferramentas práticas para o seu dia a dia. Reembolsa AI, Planilha, Passa Régua e Rifa Online.">
-    <title>Eh! Tudo App</title>
+    <meta name="description" content="Eh! Tudo App — desenvolvemos software web e mobile de forma rápida com stack moderna (PocketBase + Vue + TypeScript + Tailwind). Conheça nosso portfólio e fale conosco.">
+    <title>Eh! Tudo App — Desenvolvimento de Software</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="css/bulma.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -21,7 +21,7 @@
         /* ── Hero ────────────────────────────────── */
         .ht-hero {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 55%, #1a56a8 100%);
-            padding: 72px 24px 60px;
+            padding: 80px 24px 68px;
             text-align: center;
         }
         .ht-hero-logo {
@@ -29,19 +29,32 @@
             letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 6px;
         }
         .ht-hero-logo span { color: #60a5fa; }
-        .ht-hero-domain { font-size: 14px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; margin-bottom: 20px; }
+        .ht-hero-domain { font-size: 14px; color: rgba(255,255,255,0.45); letter-spacing: 0.05em; margin-bottom: 22px; }
         .ht-hero-tagline {
-            font-size: 19px; color: rgba(255,255,255,0.80);
-            max-width: 480px; margin: 0 auto 36px; line-height: 1.55;
+            font-size: 21px; color: rgba(255,255,255,0.92); font-weight: 700;
+            max-width: 580px; margin: 0 auto 10px; line-height: 1.35;
         }
+        .ht-hero-sub {
+            font-size: 15px; color: rgba(255,255,255,0.65);
+            max-width: 480px; margin: 0 auto 36px; line-height: 1.6;
+        }
+        .ht-hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .ht-hero-cta {
             display: inline-block; background: #2563eb; color: #fff;
-            padding: 13px 36px; border-radius: 50px; font-size: 15px;
+            padding: 13px 32px; border-radius: 50px; font-size: 15px;
             font-weight: 700; text-decoration: none; letter-spacing: 0.01em;
             transition: background 0.2s, transform 0.15s;
             box-shadow: 0 4px 16px rgba(37,99,235,0.40);
         }
         .ht-hero-cta:hover { background: #1d4ed8; color: #fff; transform: translateY(-1px); }
+        .ht-hero-cta-ghost {
+            display: inline-block; background: transparent; color: rgba(255,255,255,0.85);
+            padding: 12px 32px; border-radius: 50px; font-size: 15px;
+            font-weight: 700; text-decoration: none; letter-spacing: 0.01em;
+            border: 2px solid rgba(255,255,255,0.35);
+            transition: border-color 0.2s, color 0.2s, transform 0.15s;
+        }
+        .ht-hero-cta-ghost:hover { border-color: rgba(255,255,255,0.8); color: #fff; transform: translateY(-1px); }
 
         /* ── Pillars strip ───────────────────────── */
         .ht-pillars {
@@ -93,6 +106,52 @@
         }
         .ht-btn:hover { opacity: 0.88; color: #fff; transform: translateX(2px); }
 
+        /* ── Stack card (dark tech panel) ───────── */
+        .ht-stack-panel {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            border-radius: 14px; overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+            border: 1px solid #334155;
+            display: flex; flex-direction: column; height: 100%;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .ht-stack-panel:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.25); transform: translateY(-4px); }
+        .ht-stack-panel .ht-card-bar { background: #6366f1; }
+        .ht-stack-preview {
+            padding: 28px 24px 20px; display: flex; align-items: center; justify-content: center;
+            gap: 10px; flex-wrap: wrap; min-height: 110px;
+        }
+        .ht-tech-badge {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px; padding: 6px 12px;
+            font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.88);
+            letter-spacing: 0.02em;
+        }
+        .ht-tech-badge-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+        .ht-stack-panel .ht-card-body { background: transparent; }
+        .ht-stack-panel .ht-card-name { color: #e2e8f0; }
+        .ht-stack-panel .ht-card-desc { color: #94a3b8; }
+        .ht-stack-panel .ht-tag { background: rgba(255,255,255,0.08); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); }
+        .ht-stack-panel .ht-card-footer { border-top: 1px solid rgba(255,255,255,0.08); }
+        .ht-stack-panel .ht-card-icon { filter: drop-shadow(0 0 6px rgba(99,102,241,0.5)); }
+
+        /* ── CTA band ────────────────────────────── */
+        .ht-cta-band {
+            background: linear-gradient(135deg, #1e3a5f 0%, #1a56a8 100%);
+            padding: 56px 24px 60px; text-align: center;
+        }
+        .ht-cta-band-title { font-size: 26px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .ht-cta-band-sub { font-size: 16px; color: rgba(255,255,255,0.70); margin-bottom: 28px; }
+        .ht-cta-band-btn {
+            display: inline-block; background: #fff; color: #1e3a5f;
+            padding: 14px 40px; border-radius: 50px; font-size: 16px;
+            font-weight: 800; text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.20);
+        }
+        .ht-cta-band-btn:hover { background: #e0edff; color: #1e3a5f; transform: translateY(-2px); }
+
         /* ── Footer ──────────────────────────────── */
         .ht-footer {
             background: #0f172a; color: rgba(255,255,255,0.55);
@@ -102,9 +161,10 @@
         .ht-footer a:hover { color: #fff; }
 
         @media (max-width: 768px) {
-            .ht-hero { padding: 52px 16px 44px; }
+            .ht-hero { padding: 52px 16px 48px; }
             .ht-hero-logo { font-size: 38px; }
-            .ht-hero-tagline { font-size: 16px; }
+            .ht-hero-tagline { font-size: 18px; }
+            .ht-hero-sub { font-size: 14px; }
             .ht-pillar + .ht-pillar { border-left: none; }
         }
     </style>
@@ -115,8 +175,12 @@
 <section class="ht-hero">
     <div class="ht-hero-logo">Eh! Tudo<span>App</span></div>
     <div class="ht-hero-domain">ehtudo.app</div>
-    <p class="ht-hero-tagline">Ferramentas práticas para o seu dia a dia.<br>Mobile-first · Sem cadastro · Seus dados.</p>
-    <a href="#apps" class="ht-hero-cta">Ver aplicativos ↓</a>
+    <p class="ht-hero-tagline">Da ideia ao app em tempo recorde.</p>
+    <p class="ht-hero-sub">Desenvolvemos software web e mobile com stack moderna e validada. Veja o que já construímos e fale com a gente.</p>
+    <div class="ht-hero-ctas">
+        <a href="#portfolio" class="ht-hero-cta">Ver portfólio ↓</a>
+        <a href="mailto:contato@ehtudo.app" class="ht-hero-cta-ghost">Fale conosco →</a>
+    </div>
 </section>
 
 <!-- ── PILLARS ────────────────────────────────────────── -->
@@ -124,34 +188,34 @@
     <div class="container">
         <div class="columns is-mobile is-multiline is-gapless">
             <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
-                <div class="ht-pillar-icon">🆓</div>
-                <div class="ht-pillar-title">Grátis</div>
-                <div class="ht-pillar-sub">Sem mensalidade obrigatória</div>
-            </div>
-            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
-                <div class="ht-pillar-icon">📱</div>
-                <div class="ht-pillar-title">Mobile-first</div>
-                <div class="ht-pillar-sub">Funciona perfeitamente no celular</div>
-            </div>
-            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
                 <div class="ht-pillar-icon">🚀</div>
-                <div class="ht-pillar-title">Sem cadastro</div>
-                <div class="ht-pillar-sub">Comece a usar agora mesmo</div>
+                <div class="ht-pillar-title">Entrega rápida</div>
+                <div class="ht-pillar-sub">Stack otimizada para velocidade</div>
             </div>
             <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
-                <div class="ht-pillar-icon">🔒</div>
-                <div class="ht-pillar-title">Seus dados</div>
-                <div class="ht-pillar-sub">Privacidade por padrão</div>
+                <div class="ht-pillar-icon">🧱</div>
+                <div class="ht-pillar-title">Stack sólida</div>
+                <div class="ht-pillar-sub">PocketBase · Vue 3 · TypeScript · Tailwind</div>
+            </div>
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">✅</div>
+                <div class="ht-pillar-title">Portfólio validado</div>
+                <div class="ht-pillar-sub">Apps reais em produção</div>
+            </div>
+            <div class="column is-half-mobile is-one-quarter-tablet ht-pillar">
+                <div class="ht-pillar-icon">💬</div>
+                <div class="ht-pillar-title">Sem burocracia</div>
+                <div class="ht-pillar-sub">Do briefing ao deploy direto</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ── APPS ──────────────────────────────────────────── -->
-<section class="ht-apps" id="apps">
+<!-- ── PORTFOLIO ───────────────────────────────────────── -->
+<section class="ht-apps" id="portfolio">
     <div class="container">
-        <div class="ht-section-title">Nossas aplicações</div>
-        <p class="ht-section-sub">Soluções que desenvolvemos para facilitar o seu dia a dia.</p>
+        <div class="ht-section-title">Portfólio</div>
+        <p class="ht-section-sub">Apps que construímos — e que estão em uso real. Cada projeto prova o que a nossa stack consegue entregar.</p>
 
         <div class="columns is-multiline">
 
@@ -257,11 +321,49 @@
                 </div>
             </div>
 
+            <!-- Stack Plataforma -->
+            <div class="column is-half">
+                <div class="ht-stack-panel">
+                    <div class="ht-card-bar"></div>
+                    <div class="ht-stack-preview">
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#3b82f6;"></span>PocketBase</span>
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#42b883;"></span>Vue 3</span>
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#3178c6;"></span>TypeScript</span>
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#38bdf8;"></span>Tailwind CSS</span>
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#a78bfa;"></span>Vite</span>
+                        <span class="ht-tech-badge"><span class="ht-tech-badge-dot" style="background:#f97316;"></span>Docker</span>
+                    </div>
+                    <div class="ht-card-body">
+                        <div class="ht-card-header">
+                            <span class="ht-card-icon">⚡</span>
+                            <span class="ht-card-name">Stack Plataforma</span>
+                        </div>
+                        <p class="ht-card-desc">A base que acelera tudo. Monorepo com PocketBase (backend + auth + banco de dados), Vue 3 + TypeScript (frontend), Tailwind CSS v4 e Vite. Autenticação, rotas protegidas e deploy via Docker — pronto para escalar.</p>
+                        <div class="ht-card-tags">
+                            <span class="ht-tag">🏗️ Monorepo</span>
+                            <span class="ht-tag">🔐 Auth pronta</span>
+                            <span class="ht-tag">🐳 Docker</span>
+                            <span class="ht-tag">📦 Open Source</span>
+                        </div>
+                    </div>
+                    <div class="ht-card-footer">
+                        <a href="https://github.com/edsonlcandido/pockebase-vue-tailwind-flowbite" target="_blank" rel="noopener" class="ht-btn" style="background:#6366f1;">Ver no GitHub →</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────────────── -->
+<!-- ── CTA BAND ───────────────────────────────────────── -->
+<section class="ht-cta-band">
+    <div class="container">
+        <div class="ht-cta-band-title">Tem uma ideia? Vamos construir juntos. 💡</div>
+        <p class="ht-cta-band-sub">Da validação rápida ao produto completo — entregamos software real, no prazo, sem surpresas.</p>
+        <a href="mailto:contato@ehtudo.app" class="ht-cta-band-btn">Fale com a gente →</a>
+    </div>
+</section>
 <footer class="ht-footer">
     <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2026 · Feito com ❤️ e <strong style="color:rgba(255,255,255,0.8)">Bulma</strong></p>
 </footer>
