@@ -3,159 +3,296 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Passa Régua - Divisão inteligente de despesas em grupo, similar ao Splitwise">
+        <meta name="description" content="Passa Régua — Divida despesas em grupo. Mobile-first, lançamentos locais e sincronização entre dispositivos por link de compartilhamento.">
         <title>Passa Régua — Eh! Tudo App</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="css/bulma.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <style>
-            .passaregua-color { color: #047857; }
-            .passaregua-bg { background-color: #047857; }
-            .hero-passaregua { background-color: #047857; }
+            /* ---- Google Play-style layout ---- */
+            body { background: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+            /* Top nav breadcrumb */
+            .gp-topnav { background: #fff; border-bottom: 1px solid #e8eaed; padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5f6368; }
+            .gp-topnav a { color: #047857; text-decoration: none; font-weight: 500; }
+            .gp-topnav a:hover { text-decoration: underline; }
+            .gp-topnav .sep { margin: 0 4px; }
+
+            /* Hero / App info row */
+            .gp-hero { background: #fff; padding: 32px 48px; display: flex; gap: 32px; align-items: flex-start; border-bottom: 1px solid #e8eaed; }
+            .gp-icon { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; background: linear-gradient(135deg, #047857, #059669); display: flex; align-items: center; justify-content: center; font-size: 42px; color: white; }
+            .gp-info { flex: 1; }
+            .gp-appname { font-size: 26px; font-weight: 700; color: #202124; margin: 0 0 4px; }
+            .gp-developer { font-size: 14px; color: #047857; font-weight: 500; margin-bottom: 8px; }
+            .gp-tagline { font-size: 14px; color: #5f6368; margin-bottom: 12px; }
+            .gp-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+            .gp-badge { background: #e8f0fe; color: #1a73e8; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 500; }
+            .gp-badge.green { background: #e6f4ea; color: #047857; }
+            .gp-rating-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: #5f6368; }
+            .gp-stars { color: #fbbc04; font-size: 15px; }
+            .gp-meta-item { display: flex; flex-direction: column; align-items: center; border-left: 1px solid #e8eaed; padding-left: 16px; }
+            .gp-meta-val { font-weight: 700; font-size: 16px; color: #202124; }
+            .gp-meta-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+            .gp-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 200px; }
+            .gp-btn-install { background: #047857; color: white; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+            .gp-btn-install:hover { background: #065f46; color: white; }
+            .gp-free-label { font-size: 12px; color: #5f6368; }
+
+            /* Screenshot carousel */
+            .gp-carousel-section { background: #fff; padding: 24px 0; border-bottom: 1px solid #e8eaed; position: relative; }
+            .gp-carousel-header { padding: 0 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+            .gp-carousel-title { font-size: 18px; font-weight: 600; color: #202124; }
+            .gp-carousel-nav { display: flex; gap: 8px; }
+            .gp-carousel-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dadce0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #5f6368; font-size: 16px; transition: background .15s, box-shadow .15s; }
+            .gp-carousel-btn:hover { background: #f1f3f4; box-shadow: 0 2px 6px rgba(0,0,0,0.12); color: #202124; }
+            .gp-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 4px 24px 16px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+            .gp-carousel::-webkit-scrollbar { height: 6px; }
+            .gp-carousel::-webkit-scrollbar-track { background: #f1f3f4; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb { background: #bdc1c6; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb:hover { background: #80868b; }
+            .gp-screenshot-wrap { flex-shrink: 0; scroll-snap-align: start; }
+            .gp-screenshot-wrap img { border-radius: 12px; border: 1px solid #e8eaed; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+            .gp-screenshot-wrap .caption { font-size: 11px; color: #5f6368; text-align: center; margin-top: 8px; }
+            /* Mobile phone frame */
+            .phone-frame { background: #111; border-radius: 32px; padding: 10px; display: inline-block; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+            .phone-frame img { border-radius: 24px; display: block; }
+
+            /* About section */
+            .gp-about { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-section-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
+            .gp-description { font-size: 15px; color: #3c4043; line-height: 1.7; max-width: 800px; }
+            .gp-description p { margin-bottom: 12px; }
+            .gp-how-works { display: flex; gap: 24px; margin-top: 20px; }
+            .gp-step { flex: 1; background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e8eaed; }
+            .gp-step-num { width: 36px; height: 36px; background: #047857; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 12px; }
+            .gp-step-title { font-weight: 600; color: #202124; margin-bottom: 6px; font-size: 14px; }
+            .gp-step-desc { font-size: 13px; color: #5f6368; }
+
+            /* Metrics bar */
+            .gp-metrics { background: linear-gradient(135deg, #047857, #059669); padding: 32px 48px; display: flex; gap: 0; }
+            .gp-metric { flex: 1; text-align: center; color: white; padding: 0 16px; }
+            .gp-metric + .gp-metric { border-left: 1px solid rgba(255,255,255,0.3); }
+            .gp-metric-val { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+            .gp-metric-lbl { font-size: 13px; opacity: 0.85; }
+
+            /* Features grid */
+            .gp-features { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .gp-feature-card { background: #f8f9fa; border-radius: 12px; padding: 20px; border: 1px solid #e8eaed; }
+            .gp-feature-icon { font-size: 28px; margin-bottom: 10px; }
+            .gp-feature-title { font-size: 14px; font-weight: 600; color: #202124; margin-bottom: 6px; }
+            .gp-feature-desc { font-size: 13px; color: #5f6368; line-height: 1.5; }
+
+            /* Footer */
+            .gp-footer { background: #fff; padding: 24px 48px; text-align: center; color: #5f6368; font-size: 14px; border-top: 1px solid #e8eaed; }
+            .gp-footer a { color: #047857; text-decoration: none; }
+            .gp-back-btn { display: inline-flex; align-items: center; gap: 8px; color: #5f6368; text-decoration: none; padding: 8px 16px; border: 1px solid #dadce0; border-radius: 8px; font-size: 14px; margin-bottom: 16px; }
+            .gp-back-btn:hover { background: #f8f9fa; color: #202124; }
+
+            /* Algorithm callout */
+            .algo-callout { background: #ecfdf5; border-left: 4px solid #047857; border-radius: 0 12px 12px 0; padding: 20px 24px; margin-top: 20px; }
+            .algo-callout strong { color: #047857; }
+
+            /* Responsive */
+            @media (max-width: 900px) {
+                .gp-hero { flex-direction: column; padding: 24px; }
+                .gp-cta { align-items: flex-start; }
+                .gp-carousel-section { padding: 20px 0; }
+                .gp-carousel-header { padding: 0 16px; }
+                .gp-carousel { padding: 4px 16px 16px; }
+                .gp-about, .gp-features { padding: 20px 16px; }
+                .gp-how-works { flex-direction: column; }
+                .gp-feature-grid { grid-template-columns: 1fr 1fr; }
+                .gp-metrics { flex-direction: column; gap: 16px; padding: 24px 16px; }
+                .gp-metric + .gp-metric { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 16px; }
+            }
         </style>
     </head>
-<body>
-    <section class="hero is-medium hero-passaregua">
-        <div class="hero-head">
-            <nav class="navbar" style="background-color: transparent;">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item has-text-white" href="index.html">
-                            <strong>Eh! Tudo App</strong>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <p class="title is-1 has-text-white">
-                    <i class="fas fa-users"></i> Passa Régua
-                </p>
-                <p class="subtitle is-4 has-text-white">
-                    Divisão inteligente de despesas em grupo — com sincronização entre dispositivos
-                </p>
-                <a href="https://passaregua.ehtudo.app/" target="_blank" class="button is-white is-outlined is-medium">
-                    <span class="icon"><i class="fas fa-external-link-alt"></i></span>
-                    <span>Acessar aplicação</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    <body>
 
-    <section class="section">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column is-5">
-                    <figure class="image" style="max-width:390px;margin:0 auto;">
-                        <img src="img/screenshot-passaregua.png" alt="Screenshot do Passa Régua" style="border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
-                    </figure>
+    <!-- Breadcrumb nav -->
+    <div class="gp-topnav">
+        <a href="index.html">Eh! Tudo App</a>
+        <span class="sep">/</span>
+        <span>Passa Régua</span>
+    </div>
+
+    <!-- Hero -->
+    <div class="gp-hero">
+        <div class="gp-icon">⚖️</div>
+        <div class="gp-info">
+            <h1 class="gp-appname">Passa Régua</h1>
+            <div class="gp-developer">ehtudo.app</div>
+            <div class="gp-tagline">Divisão de despesas em grupo · Mobile-first · Sincronização por link de compartilhamento</div>
+            <div class="gp-badges">
+                <span class="gp-badge">📱 Mobile-first</span>
+                <span class="gp-badge">🔗 Compartilhamento por URL</span>
+                <span class="gp-badge green">✓ Grátis</span>
+                <span class="gp-badge">🏠 Dados Locais</span>
+                <span class="gp-badge">👥 Grupos</span>
+            </div>
+            <div class="gp-rating-row">
+                <span><span class="gp-stars">★★★★★</span> 5,0</span>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">0</span>
+                    <span class="gp-meta-lbl">servidor necessário</span>
                 </div>
-                <div class="column is-7">
-                    <h2 class="title is-3 passaregua-color">Sobre a aplicação</h2>
-                    <p class="content is-medium">
-                        O <strong>Passa Régua</strong> é uma aplicação web mobile-first para divisão inteligente de despesas entre amigos, similar ao Splitwise. Com sincronização de grupos entre dispositivos via <strong>PocketBase</strong>.
-                    </p>
-                    <p class="content is-medium">
-                        Registre as despesas do grupo, informe quem pagou e o valor — o sistema calcula automaticamente o acerto de contas usando um <strong>algoritmo que minimiza o número de transações necessárias</strong>, evitando voltas desnecessárias do dinheiro.
-                    </p>
-                    <p class="content is-medium">
-                        Ideal para viagens em grupo, repúblicas, casais e eventos. Chega de confusão e cobranças constrangedoras!
-                    </p>
-                    <div class="tags">
-                        <span class="tag is-success is-light">Vue 3</span>
-                        <span class="tag is-success is-light">TypeScript</span>
-                        <span class="tag is-success is-light">Tailwind CSS</span>
-                        <span class="tag is-success is-light">PocketBase</span>
-                        <span class="tag is-success is-light">Mobile-first</span>
-                    </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">&lt; 10s</span>
+                    <span class="gp-meta-lbl">por lançamento</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">Grátis</span>
+                    <span class="gp-meta-lbl">sem anúncios</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="section has-background-light">
-        <div class="container">
-            <h2 class="title is-3 has-text-centered passaregua-color">Como funciona</h2>
-            <div class="columns is-vcentered" style="margin-bottom:2rem;">
-                <div class="column is-8 is-offset-2">
-                    <div class="box">
-                        <p class="title is-5 passaregua-color"><i class="fas fa-lightbulb"></i> Algoritmo de liquidação inteligente</p>
-                        <p>O Passa Régua calcula os saldos líquidos de cada participante — quem pagou mais do que devia (credor) e quem pagou menos (devedor). Em seguida, cruza o maior devedor com o maior credor realizando a maior transferência possível entre eles, repetindo o ciclo até zerar todos os saldos. Isso garante o <strong>número mínimo de transações</strong>.</p>
-                        <br>
-                        <p><strong>Exemplo:</strong> Alice pagou R$&nbsp;150, Bob pagou R$&nbsp;90, Carol não pagou nada. Total: R$&nbsp;240 (R$&nbsp;80 por pessoa). Em vez de 3 transferências, o sistema resolve em apenas 2: Carol → Alice R$&nbsp;70 e Carol → Bob R$&nbsp;10.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="title is-3 has-text-centered passaregua-color">Funcionalidades</h2>
-            <div class="columns is-multiline">
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-users"></i></p>
-                        <p class="subtitle is-5">Grupos com sincronia</p>
-                        <p>Crie grupos para viagens e eventos. Os dados sincronizam entre dispositivos em tempo real via PocketBase.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-receipt"></i></p>
-                        <p class="subtitle is-5">Registro de despesas</p>
-                        <p>Registre data, valor, quem pagou e descrição. Divida igualmente, por porcentagem ou por valor fixo.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-balance-scale"></i></p>
-                        <p class="subtitle is-5">Saldos automáticos</p>
-                        <p>Veja o saldo de cada participante (verde = credor, vermelho = devedor) e as transações sugeridas para zerar as contas.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-money-bill-wave"></i></p>
-                        <p class="subtitle is-5">Registro de pagamentos</p>
-                        <p>Registre pagamentos diretos entre membros para quitar as dívidas conforme as sugestões do sistema.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-mobile-alt"></i></p>
-                        <p class="subtitle is-5">Mobile-first</p>
-                        <p>Interface projetada para celular com botões FAB, drawers e navegação por abas — funciona em qualquer dispositivo.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 passaregua-color"><i class="fas fa-sync-alt"></i></p>
-                        <p class="subtitle is-5">Sincronização entre dispositivos</p>
-                        <p>Compartilhe o grupo com outros participantes e todos veem as despesas e saldos atualizados em tempo real.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container has-text-centered">
-            <a href="https://passaregua.ehtudo.app/" target="_blank" class="button is-large has-text-white passaregua-bg">
-                <span class="icon"><i class="fas fa-rocket"></i></span>
-                <span>Experimente agora</span>
+        <div class="gp-cta">
+            <a href="https://passaregua.ehtudo.app/" target="_blank" class="gp-btn-install">
+                <i class="fas fa-rocket"></i>&nbsp; Abrir App
             </a>
-            <br><br>
-            <a href="index.html" class="button is-light">← Voltar para a página inicial</a>
+            <span class="gp-free-label">Sem cadastro · Funciona no celular</span>
+            <a href="https://passaregua.ehtudo.app/" target="_blank" style="font-size:13px;color:#047857;margin-top:4px;">
+                Ver página completa →
+            </a>
         </div>
-    </section>
+    </div>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                © <a href="http://ehtudo.app">ehtudo.app</a> 2026
-            </p>
-            <p>
-                Made with <strong>Bulma</strong>
-            </p>
+    <!-- Screenshot Carousel -->
+    <div class="gp-carousel-section">
+        <div class="gp-carousel-header">
+            <div class="gp-carousel-title">Screenshots</div>
+            <div class="gp-carousel-nav">
+                <button class="gp-carousel-btn" aria-label="Anterior" onclick="document.getElementById('gp-carousel').scrollBy({left:-320,behavior:'smooth'})">&#8592;</button>
+                <button class="gp-carousel-btn" aria-label="Próximo" onclick="document.getElementById('gp-carousel').scrollBy({left:320,behavior:'smooth'})">&#8594;</button>
+            </div>
         </div>
-    </footer>
-</body>
+        <div class="gp-carousel" id="gp-carousel">
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/passaregua-grupos.png" alt="Lista de grupos" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Grupos</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/passaregua-despesas.png" alt="Despesas do grupo" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Despesas</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/passaregua-saldos.png" alt="Saldos e transações sugeridas" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Saldos</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/passaregua-configuracoes.png" alt="Configurações e membros" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Configurações</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics bar -->
+    <div class="gp-metrics">
+        <div class="gp-metric">
+            <div class="gp-metric-val">Local</div>
+            <div class="gp-metric-lbl">dados salvos no dispositivo</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">URL</div>
+            <div class="gp-metric-lbl">compartilhamento entre dispositivos</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">Min.</div>
+            <div class="gp-metric-lbl">transações para acertar as contas</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">Grátis</div>
+            <div class="gp-metric-lbl">sem cadastro obrigatório</div>
+        </div>
+    </div>
+
+    <!-- About section -->
+    <div class="gp-about">
+        <div class="gp-section-title">Sobre o aplicativo</div>
+        <div class="gp-description">
+            <p>O <strong>Passa Régua</strong> é um aplicativo web <strong>mobile-first</strong> para divisão de despesas em grupo. Crie um grupo para a viagem, república, família ou evento — registre quem pagou o quê e o app calcula automaticamente o acerto de contas com o menor número de transferências possível.</p>
+            <p>Tudo roda <strong>localmente no seu dispositivo</strong>: sem cadastro, sem servidor, sem mensalidade. Para sincronizar com outras pessoas, basta <strong>compartilhar o link do grupo</strong> — quem receber o link terá acesso aos mesmos dados em tempo real.</p>
+            <p>Projetado para funcionar perfeitamente no celular, com navegação por abas na parte inferior, botões grandes e interface limpa — ideal para usar no calor do momento, sem complicação.</p>
+        </div>
+
+        <div class="algo-callout">
+            <strong>⚖️ Algoritmo de liquidação inteligente</strong><br>
+            O Passa Régua calcula os saldos líquidos de cada participante e cruza credores com devedores para chegar ao <strong>número mínimo de transferências</strong> necessárias para zerar todas as contas. Assim, ninguém precisa fazer mais pagamentos do que o necessário.
+        </div>
+
+        <div class="gp-section-title" style="margin-top:28px;">Como funciona</div>
+        <div class="gp-how-works">
+            <div class="gp-step">
+                <div class="gp-step-num">1</div>
+                <div class="gp-step-title">👥 Crie um grupo</div>
+                <div class="gp-step-desc">Crie o grupo para a viagem, evento ou república. Adicione os membros pelo nome — sem precisar de cadastro.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">2</div>
+                <div class="gp-step-title">📋 Registre as despesas</div>
+                <div class="gp-step-desc">Informe o valor, quem pagou e a descrição. O app salva tudo localmente no dispositivo em segundos.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">3</div>
+                <div class="gp-step-title">🔗 Compartilhe e acerte</div>
+                <div class="gp-step-desc">Compartilhe o link do grupo com os participantes. O app mostra os saldos e as transferências sugeridas para zerar as contas.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features grid -->
+    <div class="gp-features">
+        <div class="gp-section-title">Funcionalidades em destaque</div>
+        <div class="gp-feature-grid">
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📱</div>
+                <div class="gp-feature-title">Mobile-first</div>
+                <div class="gp-feature-desc">Interface pensada para celular: navegação por abas na base da tela, botões grandes e toque suave. Use com uma mão só.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🏠</div>
+                <div class="gp-feature-title">Dados Locais</div>
+                <div class="gp-feature-desc">Todos os lançamentos ficam salvos no seu dispositivo. Sem servidor, sem nuvem obrigatória, sem mensalidade.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🔗</div>
+                <div class="gp-feature-title">Sincronização por URL</div>
+                <div class="gp-feature-desc">Compartilhe o link do grupo com todos os participantes. Quem tiver o link acessa os dados e pode adicionar despesas.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">👥</div>
+                <div class="gp-feature-title">Múltiplos Grupos</div>
+                <div class="gp-feature-desc">Gerencie vários grupos ao mesmo tempo: viagem de carnaval, gastos mensais da casa, churrasco do fim de semana.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">⚖️</div>
+                <div class="gp-feature-title">Saldos Automáticos</div>
+                <div class="gp-feature-desc">Veja quem deve e quem tem a receber, com as transferências sugeridas para zerar tudo com o menor número de transações.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🚀</div>
+                <div class="gp-feature-title">Sem Cadastro</div>
+                <div class="gp-feature-desc">Abra o app e comece a usar. Defina seu nome no dispositivo e adicione os membros do grupo — sem formulários, sem senha.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="gp-footer">
+        <a href="index.html" class="gp-back-btn">
+            ← Voltar para Eh! Tudo App
+        </a>
+        <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2026 · Made with <strong>Bulma</strong></p>
+    </div>
+
+    </body>
 </html>
