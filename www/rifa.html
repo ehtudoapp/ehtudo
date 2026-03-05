@@ -32,6 +32,7 @@
             .gp-stars { color: #fbbc04; font-size: 15px; }
             .gp-meta-item { display: flex; flex-direction: column; align-items: center; border-left: 1px solid #e8eaed; padding-left: 16px; }
             .gp-meta-val { font-weight: 700; font-size: 16px; color: #202124; }
+            .gp-meta-val--sm { font-size: 13px; }
             .gp-meta-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
             .gp-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 200px; }
             .gp-btn-install { background: #c2410c; color: white; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
@@ -73,6 +74,7 @@
             .gp-metric { flex: 1; text-align: center; color: white; padding: 0 16px; }
             .gp-metric + .gp-metric { border-left: 1px solid rgba(255,255,255,0.3); }
             .gp-metric-val { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+            .gp-metric-val--sm { font-size: 28px; }
             .gp-metric-lbl { font-size: 13px; opacity: 0.85; }
 
             /* Features grid */
@@ -153,7 +155,7 @@
             <div class="gp-rating-row">
                 <span><span class="gp-stars">★★★★★</span> 5,0</span>
                 <div class="gp-meta-item">
-                    <span class="gp-meta-val" style="font-size:13px;">a partir de R$ 5</span>
+                    <span class="gp-meta-val gp-meta-val--sm">a partir de R$ 5</span>
                     <span class="gp-meta-lbl">ativação por rifa</span>
                 </div>
                 <div class="gp-meta-item">
@@ -223,7 +225,7 @@
     <!-- Metrics bar -->
     <div class="gp-metrics">
         <div class="gp-metric">
-            <div class="gp-metric-val" style="font-size:28px;">a partir de R$ 5</div>
+            <div class="gp-metric-val gp-metric-val--sm">a partir de R$ 5</div>
             <div class="gp-metric-lbl">taxa única de ativação por rifa</div>
         </div>
         <div class="gp-metric">
