@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Planilha — Liberdade da planilha + agilidade de um app. Controle financeiro pessoal integrado ao Google Sheets.">
+        <title>Planilha — Eh! Tudo App</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link href="css/bulma.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            /* ---- Google Play-style layout ---- */
+            body { background: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+            /* Top nav breadcrumb */
+            .gp-topnav { background: #fff; border-bottom: 1px solid #e8eaed; padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5f6368; }
+            .gp-topnav a { color: #1a73e8; text-decoration: none; font-weight: 500; }
+            .gp-topnav a:hover { text-decoration: underline; }
+            .gp-topnav .sep { margin: 0 4px; }
+
+            /* Hero / App info row */
+            .gp-hero { background: #fff; padding: 32px 48px; display: flex; gap: 32px; align-items: flex-start; border-bottom: 1px solid #e8eaed; }
+            .gp-icon { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; background: linear-gradient(135deg, #16a34a, #059669); display: flex; align-items: center; justify-content: center; font-size: 42px; color: white; }
+            .gp-info { flex: 1; }
+            .gp-appname { font-size: 26px; font-weight: 700; color: #202124; margin: 0 0 4px; }
+            .gp-developer { font-size: 14px; color: #1a73e8; font-weight: 500; margin-bottom: 8px; }
+            .gp-tagline { font-size: 14px; color: #5f6368; margin-bottom: 12px; }
+            .gp-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+            .gp-badge { background: #e8f0fe; color: #1a73e8; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 500; }
+            .gp-badge.green { background: #e6f4ea; color: #137333; }
+            .gp-rating-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: #5f6368; }
+            .gp-stars { color: #fbbc04; font-size: 15px; }
+            .gp-meta-item { display: flex; flex-direction: column; align-items: center; border-left: 1px solid #e8eaed; padding-left: 16px; }
+            .gp-meta-val { font-weight: 700; font-size: 16px; color: #202124; }
+            .gp-meta-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+            .gp-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 200px; }
+            .gp-btn-install { background: #16a34a; color: white; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+            .gp-btn-install:hover { background: #15803d; color: white; }
+            .gp-free-label { font-size: 12px; color: #5f6368; }
+
+            /* Screenshot carousel */
+            .gp-carousel-section { background: #fff; padding: 24px 0; border-bottom: 1px solid #e8eaed; position: relative; }
+            .gp-carousel-header { padding: 0 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+            .gp-carousel-title { font-size: 18px; font-weight: 600; color: #202124; }
+            .gp-carousel-nav { display: flex; gap: 8px; }
+            .gp-carousel-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dadce0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #5f6368; font-size: 16px; transition: background .15s, box-shadow .15s; }
+            .gp-carousel-btn:hover { background: #f1f3f4; box-shadow: 0 2px 6px rgba(0,0,0,0.12); color: #202124; }
+            .gp-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 4px 24px 16px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+            .gp-carousel::-webkit-scrollbar { height: 6px; }
+            .gp-carousel::-webkit-scrollbar-track { background: #f1f3f4; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb { background: #bdc1c6; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb:hover { background: #80868b; }
+            .gp-screenshot-wrap { flex-shrink: 0; scroll-snap-align: start; }
+            .gp-screenshot-wrap img { border-radius: 12px; border: 1px solid #e8eaed; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+            .gp-screenshot-wrap .caption { font-size: 11px; color: #5f6368; text-align: center; margin-top: 8px; }
+            /* Mobile phone frame */
+            .phone-frame { background: #111; border-radius: 32px; padding: 10px; display: inline-block; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+            .phone-frame img { border-radius: 24px; display: block; }
+
+            /* About section */
+            .gp-about { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-section-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
+            .gp-description { font-size: 15px; color: #3c4043; line-height: 1.7; max-width: 800px; }
+            .gp-description p { margin-bottom: 12px; }
+            .gp-how-works { display: flex; gap: 24px; margin-top: 20px; }
+            .gp-step { flex: 1; background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e8eaed; }
+            .gp-step-num { width: 36px; height: 36px; background: #16a34a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 12px; }
+            .gp-step-title { font-weight: 600; color: #202124; margin-bottom: 6px; font-size: 14px; }
+            .gp-step-desc { font-size: 13px; color: #5f6368; }
+
+            /* Metrics bar */
+            .gp-metrics { background: linear-gradient(135deg, #16a34a, #059669); padding: 32px 48px; display: flex; gap: 0; }
+            .gp-metric { flex: 1; text-align: center; color: white; padding: 0 16px; }
+            .gp-metric + .gp-metric { border-left: 1px solid rgba(255,255,255,0.3); }
+            .gp-metric-val { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+            .gp-metric-lbl { font-size: 13px; opacity: 0.85; }
+
+            /* Features grid */
+            .gp-features { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .gp-feature-card { background: #f8f9fa; border-radius: 12px; padding: 20px; border: 1px solid #e8eaed; }
+            .gp-feature-icon { font-size: 28px; margin-bottom: 10px; }
+            .gp-feature-title { font-size: 14px; font-weight: 600; color: #202124; margin-bottom: 6px; }
+            .gp-feature-desc { font-size: 13px; color: #5f6368; line-height: 1.5; }
+
+            /* Plans section */
+            .gp-plans { background: #f8f9fa; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-plan-grid { display: flex; gap: 16px; }
+            .gp-plan-card { flex: 1; background: #fff; border: 2px solid #e8eaed; border-radius: 16px; padding: 24px; position: relative; }
+            .gp-plan-card.popular { border-color: #16a34a; }
+            .gp-popular-badge { background: #16a34a; color: white; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 20px; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+            .gp-plan-name { font-size: 18px; font-weight: 700; color: #202124; margin-bottom: 4px; }
+            .gp-plan-for { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+            .gp-plan-price { font-size: 28px; font-weight: 800; color: #202124; margin-bottom: 16px; }
+            .gp-plan-price small { font-size: 13px; font-weight: 400; color: #5f6368; }
+            .gp-plan-feature { font-size: 13px; color: #3c4043; padding: 5px 0; border-bottom: 1px solid #f1f3f4; display: flex; align-items: center; gap: 8px; }
+            .gp-plan-feature i { color: #34a853; font-size: 13px; }
+            .gp-plan-btn { display: block; width: 100%; text-align: center; margin-top: 20px; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; text-decoration: none; }
+            .gp-plan-btn.primary { background: #16a34a; color: white; border: none; }
+            .gp-plan-btn.secondary { background: white; color: #16a34a; border: 2px solid #16a34a; }
+            .gp-plan-btn.outline { background: white; color: #5f6368; border: 2px solid #e8eaed; }
+
+            /* Footer */
+            .gp-footer { background: #fff; padding: 24px 48px; text-align: center; color: #5f6368; font-size: 14px; border-top: 1px solid #e8eaed; }
+            .gp-footer a { color: #1a73e8; text-decoration: none; }
+            .gp-back-btn { display: inline-flex; align-items: center; gap: 8px; color: #5f6368; text-decoration: none; padding: 8px 16px; border: 1px solid #dadce0; border-radius: 8px; font-size: 14px; margin-bottom: 16px; }
+            .gp-back-btn:hover { background: #f8f9fa; color: #202124; }
+
+            /* Responsive */
+            @media (max-width: 900px) {
+                .gp-hero { flex-direction: column; padding: 24px; }
+                .gp-cta { align-items: flex-start; }
+                .gp-carousel-section { padding: 20px 0; }
+                .gp-carousel-header { padding: 0 16px; }
+                .gp-carousel { padding: 4px 16px 16px; }
+                .gp-about, .gp-features, .gp-plans { padding: 20px 16px; }
+                .gp-how-works { flex-direction: column; }
+                .gp-feature-grid { grid-template-columns: 1fr 1fr; }
+                .gp-plan-grid { flex-direction: column; }
+                .gp-metrics { flex-direction: column; gap: 16px; padding: 24px 16px; }
+                .gp-metric + .gp-metric { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 16px; }
+            }
+        </style>
+    </head>
+    <body>
+
+    <!-- Breadcrumb nav -->
+    <div class="gp-topnav">
+        <a href="index.html">Eh! Tudo App</a>
+        <span class="sep">/</span>
+        <span>Planilha</span>
+    </div>
+
+    <!-- Hero -->
+    <div class="gp-hero">
+        <div class="gp-icon">📊</div>
+        <div class="gp-info">
+            <h1 class="gp-appname">Planilha</h1>
+            <div class="gp-developer">ehtudo.app</div>
+            <div class="gp-tagline">Liberdade da Planilha + Agilidade de um App · Controle financeiro pessoal integrado ao Google Sheets</div>
+            <div class="gp-badges">
+                <span class="gp-badge">💰 Finanças Pessoais</span>
+                <span class="gp-badge">🔗 Google Sheets</span>
+                <span class="gp-badge green">✓ Grátis para começar</span>
+                <span class="gp-badge">🤖 IA / OCR</span>
+                <span class="gp-badge">📱 Mobile-first</span>
+            </div>
+            <div class="gp-rating-row">
+                <span><span class="gp-stars">★★★★★</span> 5,0</span>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">100%</span>
+                    <span class="gp-meta-lbl">seus dados</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">&lt; 30s</span>
+                    <span class="gp-meta-lbl">setup inicial</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">Grátis</span>
+                    <span class="gp-meta-lbl">plano básico</span>
+                </div>
+            </div>
+        </div>
+        <div class="gp-cta">
+            <a href="https://planilha.ehtudo.app/" target="_blank" class="gp-btn-install">
+                <i class="fas fa-rocket"></i>&nbsp; Começar Grátis
+            </a>
+            <span class="gp-free-label">Sem cartão de crédito · Planilha criada em segundos</span>
+            <a href="https://planilha.ehtudo.app/" target="_blank" style="font-size:13px;color:#1a73e8;margin-top:4px;">
+                Ver página completa →
+            </a>
+        </div>
+    </div>
+
+    <!-- Screenshot Carousel -->
+    <div class="gp-carousel-section">
+        <div class="gp-carousel-header">
+            <div class="gp-carousel-title">Screenshots</div>
+            <div class="gp-carousel-nav">
+                <button class="gp-carousel-btn" aria-label="Anterior" onclick="document.getElementById('gp-carousel').scrollBy({left:-420,behavior:'smooth'})">&#8592;</button>
+                <button class="gp-carousel-btn" aria-label="Próximo" onclick="document.getElementById('gp-carousel').scrollBy({left:420,behavior:'smooth'})">&#8594;</button>
+            </div>
+        </div>
+        <div class="gp-carousel" id="gp-carousel">
+            <!-- Desktop screenshots -->
+            <div class="gp-screenshot-wrap">
+                <img src="img/planilha-dashboard.png" alt="Dashboard financeiro" style="height:290px;width:auto;">
+                <div class="caption">Dashboard</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <img src="img/planilha-lancamentos.png" alt="Lista de lançamentos" style="height:290px;width:auto;">
+                <div class="caption">Lançamentos</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <img src="img/planilha-categorias.png" alt="Categorias" style="height:290px;width:auto;">
+                <div class="caption">Categorias</div>
+            </div>
+            <!-- Mobile screenshots in phone frame -->
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/planilha-dashboard-mobile.png" alt="Dashboard mobile" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Dashboard · Mobile</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/planilha-lancamentos-mobile.png" alt="Lançamentos mobile" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Lançamentos · Mobile</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics bar -->
+    <div class="gp-metrics">
+        <div class="gp-metric">
+            <div class="gp-metric-val">100%</div>
+            <div class="gp-metric-lbl">dados no seu Google Drive</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">&lt; 10s</div>
+            <div class="gp-metric-lbl">para lançar uma despesa</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">90%</div>
+            <div class="gp-metric-lbl">das atividades financeiras cobertas</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">IA</div>
+            <div class="gp-metric-lbl">lê comprovantes automaticamente</div>
+        </div>
+    </div>
+
+    <!-- About section -->
+    <div class="gp-about">
+        <div class="gp-section-title">Sobre o aplicativo</div>
+        <div class="gp-description">
+            <p>O <strong>Planilha</strong> combina o melhor dos dois mundos: a <strong>velocidade de um app mobile</strong> para lançar despesas no dia a dia com a <strong>flexibilidade total do Google Sheets</strong> para análises, fórmulas e dashboards personalizados.</p>
+            <p>Registre gastos em segundos pelo celular — na fila do mercado, no restaurante, em qualquer lugar. Todos os lançamentos ficam automaticamente sincronizados na sua planilha Google Sheets, que fica 100% no seu Google Drive. Seus lançamentos e gastos ficam inteiramente na sua planilha — nenhum lançamento fica no nosso servidor.</p>
+            <p>Com agentes de <strong>IA que leem comprovantes</strong>, basta tirar uma foto ou compartilhar um extrato: a IA extrai valor, data, estabelecimento e categoria automaticamente, aprendendo com seu histórico de lançamentos.</p>
+        </div>
+
+        <div class="gp-section-title" style="margin-top:28px;">Como funciona</div>
+        <div class="gp-how-works">
+            <div class="gp-step">
+                <div class="gp-step-num">1</div>
+                <div class="gp-step-title">📝 Cadastre-se em 30 segundos</div>
+                <div class="gp-step-desc">Crie sua conta e comece a lançar gastos direto do celular. Interface simples e rápida — feita para usar no dia a dia.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">2</div>
+                <div class="gp-step-title">📊 Planilha criada automaticamente</div>
+                <div class="gp-step-desc">Todos os lançamentos ficam numa planilha Google Sheets criada para você no seu Drive. Acesse quando quiser para ver relatórios e análises.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">3</div>
+                <div class="gp-step-title">🎨 Personalize do seu jeito</div>
+                <div class="gp-step-desc">Adicione categorias, crie fórmulas personalizadas, monte dashboards. A planilha é 100% sua — use todo o poder do Google Sheets!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features grid -->
+    <div class="gp-features">
+        <div class="gp-section-title">Funcionalidades em destaque</div>
+        <div class="gp-feature-grid">
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">💸</div>
+                <div class="gp-feature-title">Lançamentos Rápidos</div>
+                <div class="gp-feature-desc">Registre gastos, receitas e transferências em segundos pelo celular. Lance na fila do mercado, no restaurante, em qualquer lugar.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📈</div>
+                <div class="gp-feature-title">Dashboard Financeiro</div>
+                <div class="gp-feature-desc">Saldos sempre atualizados, gráficos por tipo de categoria e top 10 gastos. Entenda para onde vai seu dinheiro com clareza visual.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🗂️</div>
+                <div class="gp-feature-title">Categorias Personalizáveis</div>
+                <div class="gp-feature-desc">Organize despesas em categorias que fazem sentido para você: Supermercado, Restaurantes, Academia, Cinema, Lazer, Roupas e muito mais — agrupe por tipo PRECISO ou QUERO e crie novas categorias livremente.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🤖</div>
+                <div class="gp-feature-title">IA que Lê Comprovantes</div>
+                <div class="gp-feature-desc">Tire foto, compartilhe prints de extrato ou comprovantes do app do banco. A IA extrai os dados e categoriza automaticamente com base no seu histórico.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🔗</div>
+                <div class="gp-feature-title">Integração Google Sheets</div>
+                <div class="gp-feature-desc">Seus dados ficam 100% no seu Google Drive. Use fórmulas, tabelas dinâmicas e dashboards personalizados — tudo com a flexibilidade do Google Sheets.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🔒</div>
+                <div class="gp-feature-title">Privacidade Total</div>
+                <div class="gp-feature-desc">Não armazenamos seus dados financeiros. Tudo é salvo diretamente na sua planilha Google Sheets. Nosso sistema apenas conecta o app à sua conta Google.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plans section -->
+    <div class="gp-plans">
+        <div class="gp-section-title">Planos</div>
+        <div class="gp-plan-grid">
+            <div class="gp-plan-card">
+                <div class="gp-plan-name">Gratuito</div>
+                <div class="gp-plan-for">Para controle financeiro pessoal</div>
+                <div class="gp-plan-price">R$ 0<small>/mês</small></div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Lançamentos ilimitados</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Dashboard financeiro</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Categorias personalizáveis</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Integração Google Sheets</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Dados 100% no seu Drive</div>
+                <a href="https://planilha.ehtudo.app/" target="_blank" class="gp-plan-btn secondary">Começar Grátis</a>
+            </div>
+            <div class="gp-plan-card popular">
+                <div class="gp-popular-badge">⭐ Mais Popular</div>
+                <div class="gp-plan-name">Premium</div>
+                <div class="gp-plan-for">Para quem quer o máximo de automação</div>
+                <div class="gp-plan-price">Sob consulta</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Tudo do plano Gratuito</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> IA que lê comprovantes</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Categorização automática por IA</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Aprendizado com seu histórico</div>
+                <div class="gp-plan-feature"><i class="fas fa-check"></i> Suporte prioritário</div>
+                <a href="https://planilha.ehtudo.app/" target="_blank" class="gp-plan-btn primary">Começar Agora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="gp-footer">
+        <a href="index.html" class="gp-back-btn">
+            ← Voltar para Eh! Tudo App
+        </a>
+        <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2026 · Made with <strong>Bulma</strong></p>
+    </div>
+
+    </body>
+</html>
