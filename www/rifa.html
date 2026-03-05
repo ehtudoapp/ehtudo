@@ -3,111 +3,374 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Rifa - Crie e gerencie rifas online">
+        <meta name="description" content="Rifa: crie e gerencie rifas online. Pagamentos via PIX direto para você, imagens para Stories e painel de controle completo. A partir de R$ 5 por rifa.">
         <title>Rifa — Eh! Tudo App</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link href="css/bulma.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <style>
+            /* ---- Google Play-style layout ---- */
+            body { background: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+            /* Top nav breadcrumb */
+            .gp-topnav { background: #fff; border-bottom: 1px solid #e8eaed; padding: 12px 24px; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #5f6368; }
+            .gp-topnav a { color: #c2410c; text-decoration: none; font-weight: 500; }
+            .gp-topnav a:hover { text-decoration: underline; }
+            .gp-topnav .sep { margin: 0 4px; }
+
+            /* Hero / App info row */
+            .gp-hero { background: #fff; padding: 32px 48px; display: flex; gap: 32px; align-items: flex-start; border-bottom: 1px solid #e8eaed; }
+            .gp-icon { width: 96px; height: 96px; border-radius: 22px; flex-shrink: 0; background: linear-gradient(135deg, #c2410c, #ea580c); display: flex; align-items: center; justify-content: center; font-size: 42px; color: white; }
+            .gp-info { flex: 1; }
+            .gp-appname { font-size: 26px; font-weight: 700; color: #202124; margin: 0 0 4px; }
+            .gp-developer { font-size: 14px; color: #c2410c; font-weight: 500; margin-bottom: 8px; }
+            .gp-tagline { font-size: 14px; color: #5f6368; margin-bottom: 12px; }
+            .gp-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+            .gp-badge { background: #fff7ed; color: #c2410c; border-radius: 20px; padding: 3px 12px; font-size: 12px; font-weight: 500; }
+            .gp-badge.green { background: #e6f4ea; color: #137333; }
+            .gp-rating-row { display: flex; align-items: center; gap: 20px; font-size: 13px; color: #5f6368; }
+            .gp-stars { color: #fbbc04; font-size: 15px; }
+            .gp-meta-item { display: flex; flex-direction: column; align-items: center; border-left: 1px solid #e8eaed; padding-left: 16px; }
+            .gp-meta-val { font-weight: 700; font-size: 16px; color: #202124; }
+            .gp-meta-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+            .gp-cta { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-width: 200px; }
+            .gp-btn-install { background: #c2410c; color: white; border: none; border-radius: 8px; padding: 12px 32px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; text-align: center; }
+            .gp-btn-install:hover { background: #9a3412; color: white; }
+            .gp-free-label { font-size: 12px; color: #5f6368; }
+
+            /* Screenshot carousel */
+            .gp-carousel-section { background: #fff; padding: 24px 0; border-bottom: 1px solid #e8eaed; position: relative; }
+            .gp-carousel-header { padding: 0 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+            .gp-carousel-title { font-size: 18px; font-weight: 600; color: #202124; }
+            .gp-carousel-nav { display: flex; gap: 8px; }
+            .gp-carousel-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dadce0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #5f6368; font-size: 16px; transition: background .15s, box-shadow .15s; }
+            .gp-carousel-btn:hover { background: #f1f3f4; box-shadow: 0 2px 6px rgba(0,0,0,0.12); color: #202124; }
+            .gp-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 4px 24px 16px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+            .gp-carousel::-webkit-scrollbar { height: 6px; }
+            .gp-carousel::-webkit-scrollbar-track { background: #f1f3f4; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb { background: #bdc1c6; border-radius: 3px; }
+            .gp-carousel::-webkit-scrollbar-thumb:hover { background: #80868b; }
+            .gp-screenshot-wrap { flex-shrink: 0; scroll-snap-align: start; }
+            .gp-screenshot-wrap img { border-radius: 12px; border: 1px solid #e8eaed; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+            .gp-screenshot-wrap .caption { font-size: 11px; color: #5f6368; text-align: center; margin-top: 8px; }
+            /* Mobile phone frame */
+            .phone-frame { background: #111; border-radius: 32px; padding: 10px; display: inline-block; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+            .phone-frame img { border-radius: 24px; display: block; }
+
+            /* About section */
+            .gp-about { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-section-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
+            .gp-description { font-size: 15px; color: #3c4043; line-height: 1.7; max-width: 800px; }
+            .gp-description p { margin-bottom: 12px; }
+            .gp-how-works { display: flex; gap: 24px; margin-top: 20px; }
+            .gp-step { flex: 1; background: #f8f9fa; border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #e8eaed; }
+            .gp-step-num { width: 36px; height: 36px; background: #c2410c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; margin: 0 auto 12px; }
+            .gp-step-title { font-weight: 600; color: #202124; margin-bottom: 6px; font-size: 14px; }
+            .gp-step-desc { font-size: 13px; color: #5f6368; }
+
+            /* Metrics bar */
+            .gp-metrics { background: linear-gradient(135deg, #c2410c, #ea580c); padding: 32px 48px; display: flex; gap: 0; }
+            .gp-metric { flex: 1; text-align: center; color: white; padding: 0 16px; }
+            .gp-metric + .gp-metric { border-left: 1px solid rgba(255,255,255,0.3); }
+            .gp-metric-val { font-size: 36px; font-weight: 800; margin-bottom: 4px; }
+            .gp-metric-lbl { font-size: 13px; opacity: 0.85; }
+
+            /* Features grid */
+            .gp-features { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .gp-feature-card { background: #f8f9fa; border-radius: 12px; padding: 20px; border: 1px solid #e8eaed; }
+            .gp-feature-icon { font-size: 28px; margin-bottom: 10px; }
+            .gp-feature-title { font-size: 14px; font-weight: 600; color: #202124; margin-bottom: 6px; }
+            .gp-feature-desc { font-size: 13px; color: #5f6368; line-height: 1.5; }
+
+            /* Pricing section */
+            .gp-pricing { background: #fff7ed; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
+            .gp-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+            .gp-plan { background: #fff; border-radius: 12px; padding: 24px; border: 1px solid #e8eaed; text-align: center; }
+            .gp-plan.highlight { border: 2px solid #c2410c; }
+            .gp-plan-name { font-size: 16px; font-weight: 700; color: #202124; margin-bottom: 4px; }
+            .gp-plan-sub { font-size: 12px; color: #5f6368; margin-bottom: 16px; }
+            .gp-plan-price { font-size: 36px; font-weight: 800; color: #c2410c; }
+            .gp-plan-period { font-size: 13px; color: #5f6368; margin-bottom: 16px; }
+            .gp-plan-features { list-style: none; padding: 0; margin: 0; text-align: left; font-size: 13px; color: #3c4043; }
+            .gp-plan-features li { padding: 4px 0; border-top: 1px solid #f3f4f6; }
+            .gp-plan-features li:first-child { border-top: none; }
+            .gp-plan-btn { display: block; margin-top: 16px; padding: 10px; border-radius: 8px; border: 1px solid #c2410c; color: #c2410c; text-align: center; text-decoration: none; font-weight: 600; font-size: 14px; }
+            .gp-plan.highlight .gp-plan-btn { background: #c2410c; color: white; border-color: #c2410c; }
+            .gp-plan-btn:hover { background: #c2410c; color: white; }
+
+            /* Footer */
+            .gp-footer { background: #fff; padding: 24px 48px; text-align: center; color: #5f6368; font-size: 14px; border-top: 1px solid #e8eaed; }
+            .gp-footer a { color: #c2410c; text-decoration: none; }
+            .gp-back-btn { display: inline-flex; align-items: center; gap: 8px; color: #5f6368; text-decoration: none; padding: 8px 16px; border: 1px solid #dadce0; border-radius: 8px; font-size: 14px; margin-bottom: 16px; }
+            .gp-back-btn:hover { background: #f8f9fa; color: #202124; }
+
+            /* Callout */
+            .rifa-callout { background: #fff7ed; border-left: 4px solid #c2410c; border-radius: 0 12px 12px 0; padding: 20px 24px; margin-top: 20px; }
+            .rifa-callout strong { color: #c2410c; }
+
+            /* Responsive */
+            @media (max-width: 900px) {
+                .gp-hero { flex-direction: column; padding: 24px; }
+                .gp-cta { align-items: flex-start; }
+                .gp-carousel-section { padding: 20px 0; }
+                .gp-carousel-header { padding: 0 16px; }
+                .gp-carousel { padding: 4px 16px 16px; }
+                .gp-about, .gp-features, .gp-pricing { padding: 20px 16px; }
+                .gp-how-works { flex-direction: column; }
+                .gp-feature-grid, .gp-pricing-grid { grid-template-columns: 1fr 1fr; }
+                .gp-metrics { flex-direction: column; gap: 16px; padding: 24px 16px; }
+                .gp-metric + .gp-metric { border-left: none; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 16px; }
+            }
+            @media (max-width: 600px) {
+                .gp-feature-grid, .gp-pricing-grid { grid-template-columns: 1fr; }
+            }
+        </style>
     </head>
-<body>
-    <section class="hero is-danger is-medium">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="index.html">
-                            <strong>Eh! Tudo App</strong>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <p class="title is-1">
-                    <i class="fas fa-ticket-alt"></i> Rifa
-                </p>
-                <p class="subtitle is-4">
-                    Crie e gerencie rifas online de forma simples e transparente
-                </p>
-                <a href="https://rifa.ehtudo.app/" target="_blank" class="button is-white is-outlined is-medium">
-                    <span class="icon"><i class="fas fa-external-link-alt"></i></span>
-                    <span>Acessar aplicação</span>
-                </a>
-            </div>
-        </div>
-    </section>
+    <body>
 
-    <section class="section">
-        <div class="container">
-            <div class="columns is-vcentered">
-                <div class="column is-6">
-                    <figure class="image">
-                        <img src="img/screenshot-rifa.png" alt="Screenshot da Rifa">
-                    </figure>
+    <!-- Breadcrumb nav -->
+    <div class="gp-topnav">
+        <a href="index.html">Eh! Tudo App</a>
+        <span class="sep">/</span>
+        <span>Rifa</span>
+    </div>
+
+    <!-- Hero -->
+    <div class="gp-hero">
+        <div class="gp-icon">🎲</div>
+        <div class="gp-info">
+            <h1 class="gp-appname">Rifa</h1>
+            <div class="gp-developer">ehtudo.app</div>
+            <div class="gp-tagline">Crie e gerencie rifas online · Pagamento direto via PIX · Imagens para Stories</div>
+            <div class="gp-badges">
+                <span class="gp-badge">🎰 Sorteio</span>
+                <span class="gp-badge">💳 PIX Direto</span>
+                <span class="gp-badge">📱 Stories</span>
+                <span class="gp-badge green">✓ 100% para você</span>
+                <span class="gp-badge">📊 Painel</span>
+            </div>
+            <div class="gp-rating-row">
+                <span><span class="gp-stars">★★★★★</span> 5,0</span>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">R$ 5</span>
+                    <span class="gp-meta-lbl">ativação por rifa</span>
                 </div>
-                <div class="column is-6">
-                    <h2 class="title is-3 has-text-danger">Sobre a aplicação</h2>
-                    <p class="content is-medium">
-                        O <strong>Rifa</strong> é uma plataforma online para criar e gerenciar rifas de forma prática, organizada e transparente.
-                    </p>
-                    <p class="content is-medium">
-                        Defina o prêmio, o número de bilhetes e o valor de cada cota. Venda bilhetes, controle quem pagou e sorteie o ganhador — tudo em um só lugar, sem complicação.
-                    </p>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">100%</span>
+                    <span class="gp-meta-lbl">do valor para você</span>
+                </div>
+                <div class="gp-meta-item">
+                    <span class="gp-meta-val">PIX</span>
+                    <span class="gp-meta-lbl">pagamento direto</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="section has-background-light">
-        <div class="container">
-            <h2 class="title is-3 has-text-centered has-text-danger">Funcionalidades</h2>
-            <div class="columns is-multiline">
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-danger"><i class="fas fa-plus-circle"></i></p>
-                        <p class="subtitle is-5">Criação rápida</p>
-                        <p>Crie uma rifa em minutos definindo prêmio, cotas e valor de cada bilhete.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-danger"><i class="fas fa-list-ol"></i></p>
-                        <p class="subtitle is-5">Controle de bilhetes</p>
-                        <p>Acompanhe quais bilhetes foram vendidos e o status de pagamento de cada participante.</p>
-                    </div>
-                </div>
-                <div class="column is-4">
-                    <div class="box has-text-centered">
-                        <p class="title is-1 has-text-danger"><i class="fas fa-random"></i></p>
-                        <p class="subtitle is-5">Sorteio transparente</p>
-                        <p>Realize o sorteio de forma aleatória e transparente diretamente na plataforma.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container has-text-centered">
-            <a href="https://rifa.ehtudo.app/" target="_blank" class="button is-danger is-large">
-                <span class="icon"><i class="fas fa-rocket"></i></span>
-                <span>Experimente agora</span>
+        <div class="gp-cta">
+            <a href="https://rifa.ehtudo.app/" target="_blank" class="gp-btn-install">
+                <i class="fas fa-rocket"></i>&nbsp; Criar Rifa
             </a>
-            <br><br>
-            <a href="index.html" class="button is-light">← Voltar para a página inicial</a>
+            <span class="gp-free-label">Sem mensalidade · Taxa única por rifa</span>
+            <a href="https://rifa.ehtudo.app/" target="_blank" style="font-size:13px;color:#c2410c;margin-top:4px;">
+                Ver página completa →
+            </a>
         </div>
-    </section>
+    </div>
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                © <a href="http://ehtudo.app">ehtudo.app</a> 2026
-            </p>
-            <p>
-                Made with <strong>Bulma</strong>
-            </p>
+    <!-- Screenshot Carousel -->
+    <div class="gp-carousel-section">
+        <div class="gp-carousel-header">
+            <div class="gp-carousel-title">Screenshots</div>
+            <div class="gp-carousel-nav">
+                <button class="gp-carousel-btn" aria-label="Anterior" onclick="document.getElementById('gp-carousel').scrollBy({left:-320,behavior:'smooth'})">&#8592;</button>
+                <button class="gp-carousel-btn" aria-label="Próximo" onclick="document.getElementById('gp-carousel').scrollBy({left:320,behavior:'smooth'})">&#8594;</button>
+            </div>
         </div>
-    </footer>
-</body>
+        <div class="gp-carousel" id="gp-carousel">
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/rifa-rifas.png" alt="Minhas Rifas" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Minhas Rifas</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/rifa-dashboard.png" alt="Painel de Controle" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Painel de Controle</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/rifa-listmanager.png" alt="Gerenciar Números" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Gerenciar Números</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/rifa-publicselect.png" alt="Seleção de Números" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Seleção de Números</div>
+            </div>
+            <div class="gp-screenshot-wrap">
+                <div class="phone-frame">
+                    <img src="img/rifa-sharepreview.png" alt="Compartilhamento" style="height:270px;width:auto;">
+                </div>
+                <div class="caption">Compartilhamento</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics bar -->
+    <div class="gp-metrics">
+        <div class="gp-metric">
+            <div class="gp-metric-val">R$ 5</div>
+            <div class="gp-metric-lbl">taxa única de ativação</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">100%</div>
+            <div class="gp-metric-lbl">do valor vai para você</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">PIX</div>
+            <div class="gp-metric-lbl">pagamento direto dos compradores</div>
+        </div>
+        <div class="gp-metric">
+            <div class="gp-metric-val">📱</div>
+            <div class="gp-metric-lbl">imagens prontas para Stories</div>
+        </div>
+    </div>
+
+    <!-- About section -->
+    <div class="gp-about">
+        <div class="gp-section-title">Sobre o aplicativo</div>
+        <div class="gp-description">
+            <p>O <strong>Rifa</strong> é uma plataforma completa para criar e gerenciar rifas online de forma simples, organizada e segura. Defina o título, o prêmio e a quantidade de números, pague a taxa única de ativação e comece a vender imediatamente.</p>
+            <p>Os compradores reservam seus números e pagam direto no seu PIX. Você recebe <strong>100% do valor arrecadado</strong>, sem taxas sobre as vendas e sem mensalidades. Tudo o que entra é seu.</p>
+            <p>Acompanhe quem reservou, quem já pagou e quem ainda está pendente pelo painel de controle. Quando estiver pronto, realize o sorteio diretamente na plataforma.</p>
+        </div>
+
+        <div class="rifa-callout">
+            <strong>📱 Otimizado para Stories e WhatsApp</strong><br>
+            Gere imagens dos números disponíveis formatadas para o Instagram Stories e envie links exclusivos via WhatsApp com os dados do PIX e QR Code para cada comprador. Divulgar sua rifa nunca foi tão fácil.
+        </div>
+
+        <div class="gp-section-title" style="margin-top:28px;">Como funciona</div>
+        <div class="gp-how-works">
+            <div class="gp-step">
+                <div class="gp-step-num">1</div>
+                <div class="gp-step-title">🎲 Crie a Rifa</div>
+                <div class="gp-step-desc">Cadastre o título, o prêmio e a quantidade de números. Pague a taxa única de ativação e sua rifa já está pronta para vender.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">2</div>
+                <div class="gp-step-title">📤 Divulgue e Receba</div>
+                <div class="gp-step-desc">Compartilhe nas redes com imagens para Stories. Os compradores escolhem os números e pagam direto no seu PIX.</div>
+            </div>
+            <div class="gp-step">
+                <div class="gp-step-num">3</div>
+                <div class="gp-step-title">🏆 Confirme e Sorteie</div>
+                <div class="gp-step-desc">Confirme os pagamentos no painel e realize o sorteio quando estiver pronto. Simples e transparente.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features grid -->
+    <div class="gp-features">
+        <div class="gp-section-title">Funcionalidades em destaque</div>
+        <div class="gp-feature-grid">
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">💳</div>
+                <div class="gp-feature-title">Pagamento Direto via PIX</div>
+                <div class="gp-feature-desc">Os compradores pagam diretamente para você via PIX. Você recebe 100% do valor arrecadado, sem intermediários.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📱</div>
+                <div class="gp-feature-title">Imagens para Stories</div>
+                <div class="gp-feature-desc">Gere imagens dos números disponíveis otimizadas para compartilhar nos Stories do Instagram e atrair mais compradores.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">📊</div>
+                <div class="gp-feature-title">Painel de Controle</div>
+                <div class="gp-feature-desc">Gerencie todas as suas rifas, acompanhe reservas e pagamentos e veja o resumo de cada rifa em um único lugar.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">💬</div>
+                <div class="gp-feature-title">Comunicação via WhatsApp</div>
+                <div class="gp-feature-desc">Envie link exclusivo via WhatsApp para cada comprador com os dados do PIX e QR Code prontos para pagamento.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">🔒</div>
+                <div class="gp-feature-title">Seguro e Confiável</div>
+                <div class="gp-feature-desc">Sistema com validação de números e controle de reservas para garantir que cada número seja atribuído a um único comprador.</div>
+            </div>
+            <div class="gp-feature-card">
+                <div class="gp-feature-icon">⚡</div>
+                <div class="gp-feature-title">Rápido e Simples</div>
+                <div class="gp-feature-desc">Crie sua rifa em minutos, sem configurações complexas. Comece a vender imediatamente após a ativação.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="gp-pricing">
+        <div class="gp-section-title">Planos</div>
+        <p style="font-size:14px;color:#5f6368;margin-bottom:0;">Taxa única de ativação por rifa. Sem mensalidade. Sem taxas sobre as vendas.</p>
+        <div class="gp-pricing-grid">
+            <div class="gp-plan">
+                <div class="gp-plan-name">50 Números</div>
+                <div class="gp-plan-sub">Para rifas menores</div>
+                <div class="gp-plan-price">R$ 5</div>
+                <div class="gp-plan-period">taxa única de ativação</div>
+                <ul class="gp-plan-features">
+                    <li>✓ Até 50 números</li>
+                    <li>✓ Pagamentos via PIX</li>
+                    <li>✓ 100% do valor para você</li>
+                    <li>✓ Imagens para Stories</li>
+                    <li>✓ Painel de controle</li>
+                    <li>✓ Comunicação via WhatsApp</li>
+                </ul>
+                <a href="https://rifa.ehtudo.app/" target="_blank" class="gp-plan-btn">Começar</a>
+            </div>
+            <div class="gp-plan highlight">
+                <div class="gp-plan-name">100 Números</div>
+                <div class="gp-plan-sub">Para rifas médias</div>
+                <div class="gp-plan-price">R$ 8</div>
+                <div class="gp-plan-period">taxa única de ativação</div>
+                <ul class="gp-plan-features">
+                    <li>✓ Até 100 números</li>
+                    <li>✓ Pagamentos via PIX</li>
+                    <li>✓ 100% do valor para você</li>
+                    <li>✓ Imagens para Stories</li>
+                    <li>✓ Painel de controle</li>
+                    <li>✓ Comunicação via WhatsApp</li>
+                </ul>
+                <a href="https://rifa.ehtudo.app/" target="_blank" class="gp-plan-btn">Começar</a>
+            </div>
+            <div class="gp-plan">
+                <div class="gp-plan-name">200 Números</div>
+                <div class="gp-plan-sub">Para rifas grandes</div>
+                <div class="gp-plan-price">R$ 10</div>
+                <div class="gp-plan-period">taxa única de ativação</div>
+                <ul class="gp-plan-features">
+                    <li>✓ Até 200 números</li>
+                    <li>✓ Pagamentos via PIX</li>
+                    <li>✓ 100% do valor para você</li>
+                    <li>✓ Imagens para Stories</li>
+                    <li>✓ Painel de controle</li>
+                    <li>✓ Comunicação via WhatsApp</li>
+                </ul>
+                <a href="https://rifa.ehtudo.app/" target="_blank" class="gp-plan-btn">Começar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="gp-footer">
+        <a href="index.html" class="gp-back-btn">
+            ← Voltar para Eh! Tudo App
+        </a>
+        <p>© <a href="http://ehtudo.app">ehtudo.app</a> 2026 · Made with <strong>Bulma</strong></p>
+    </div>
+
+    </body>
 </html>
