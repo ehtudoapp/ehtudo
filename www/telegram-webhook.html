@@ -31,6 +31,16 @@
         .gp-btn { background: #168ac0; color: white; border-radius: 8px; padding: 12px 24px; font-size: 15px; font-weight: 600; text-decoration: none; display: inline-block; text-align: center; }
         .gp-btn:hover { background: #10729f; color: white; }
         .gp-secondary-link { font-size: 13px; color: #168ac0; margin-top: 4px; }
+        .gp-carousel-section { background: #fff; padding: 24px 0; border-bottom: 1px solid #e8eaed; }
+        .gp-carousel-header { padding: 0 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .gp-carousel-title { font-size: 18px; font-weight: 600; color: #202124; }
+        .gp-carousel-nav { display: flex; gap: 8px; }
+        .gp-carousel-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #dadce0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #5f6368; font-size: 16px; }
+        .gp-carousel-btn:hover { background: #f1f3f4; color: #202124; }
+        .gp-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 4px 24px 16px; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .gp-screenshot-wrap { flex-shrink: 0; scroll-snap-align: start; }
+        .gp-screenshot-wrap img { max-width: 86vw; height: 300px; width: auto; border-radius: 12px; border: 1px solid #e8eaed; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+        .gp-screenshot-wrap .caption { font-size: 12px; color: #5f6368; text-align: center; margin-top: 8px; }
         .gp-about, .gp-features { background: #fff; padding: 32px 48px; border-bottom: 1px solid #e8eaed; }
         .gp-section-title { font-size: 18px; font-weight: 600; color: #202124; margin-bottom: 16px; }
         .gp-description { font-size: 15px; color: #3c4043; line-height: 1.7; max-width: 900px; }
@@ -57,6 +67,8 @@
         @media (max-width: 900px) {
             .gp-hero { flex-direction: column; padding: 24px; }
             .gp-cta { align-items: flex-start; }
+            .gp-carousel-header { padding: 0 16px; }
+            .gp-carousel { padding: 4px 16px 16px; }
             .gp-about, .gp-features { padding: 20px 16px; }
             .gp-how-works { flex-direction: column; }
             .gp-feature-grid { grid-template-columns: 1fr 1fr; }
@@ -109,6 +121,38 @@
             </a>
         </div>
     </header>
+
+    <section class="gp-carousel-section" aria-label="Capturas de tela do aplicativo">
+        <div class="gp-carousel-header">
+            <h2 class="gp-carousel-title">Screenshots</h2>
+            <div class="gp-carousel-nav">
+                <button class="gp-carousel-btn" aria-label="Anterior" onclick="document.getElementById('gp-carousel').scrollBy({left:-480,behavior:'smooth'})">&#8592;</button>
+                <button class="gp-carousel-btn" aria-label="Próximo" onclick="document.getElementById('gp-carousel').scrollBy({left:480,behavior:'smooth'})">&#8594;</button>
+            </div>
+        </div>
+        <div class="gp-carousel" id="gp-carousel">
+            <figure class="gp-screenshot-wrap">
+                <img src="img/telegram-webhook-landing.png" alt="Página inicial do Telegram Webhook Hub">
+                <figcaption class="caption">Página inicial</figcaption>
+            </figure>
+            <figure class="gp-screenshot-wrap">
+                <img src="img/telegram-webhook-dashboard.png" alt="Painel de contas do Telegram conectadas">
+                <figcaption class="caption">Painel</figcaption>
+            </figure>
+            <figure class="gp-screenshot-wrap">
+                <img src="img/telegram-webhook-account.png" alt="Formulário para adicionar uma conta do Telegram">
+                <figcaption class="caption">Adicionar conta</figcaption>
+            </figure>
+            <figure class="gp-screenshot-wrap">
+                <img src="img/telegram-webhook-list.png" alt="Lista de webhooks configurados">
+                <figcaption class="caption">Webhooks</figcaption>
+            </figure>
+            <figure class="gp-screenshot-wrap">
+                <img src="img/telegram-webhook-messages.png" alt="Histórico de mensagens recebido pelo Telegram Webhook Hub, com conteúdo anonimizado">
+                <figcaption class="caption">Mensagens · conteúdo anonimizado</figcaption>
+            </figure>
+        </div>
+    </section>
 
     <section class="gp-metrics" aria-label="Resumo dos recursos">
         <div class="gp-metric">
